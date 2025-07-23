@@ -1,0 +1,17 @@
+{
+	"required": true,
+	"package": "net.ugi.wildsprout.mixin",
+	"compatibilityLevel": "JAVA_21",
+	"mixins": [
+		"ExampleMixin",
+		"SnowPlacementMixin",
+		"SnowyGrassMixin"
+
+	],
+	"injectors": {
+		"defaultRequire": 1
+	},
+	"overwrites": {
+		"requireAnnotations": true
+	}
+}

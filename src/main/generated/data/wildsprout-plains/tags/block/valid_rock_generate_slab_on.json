@@ -1,0 +1,12 @@
+{
+  "values": [
+    "#wildsprout-plains:can_be_replaced_solid",
+    "minecraft:mud",
+    "minecraft:stone",
+    "minecraft:mossy_cobblestone",
+    "minecraft:tuff",
+    "minecraft:diorite",
+    "minecraft:andesite",
+    "minecraft:granite"
+  ]
+}
