@@ -37,6 +37,7 @@ public class ModConfiguredFeatures {
         //-------------------------
         register(context,BOULDERS_KEY, ModFeatures.BOULDERS, new DefaultFeatureConfig());
         register(context,ROCKS_KEY, ModFeatures.ROCKS, new DefaultFeatureConfig());
+        register(context, FLUFFY_SNOW_KEY, ModFeatures.FLUFFY_SNOW, new DefaultFeatureConfig());
 
 
     }
