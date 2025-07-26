@@ -47,6 +47,8 @@ public class Moss extends Feature<DefaultFeatureConfig> {
                 if (!(random.nextDouble() < noiseSample*10 -5)){
                     this.setBlockState(structureWorldAccess, pos, Blocks.MOSS_BLOCK.getDefaultState());
 
+                    if (!(structureWorldAccess.getBlockState(pos.up()).isIn(ModTags.Blocks.CAN_BE_REPLACED_NON_SOLID))) continue;
+
                     int r = random.nextInt(100);
                     if (r < 25) {
                         this.setBlockState(structureWorldAccess, pos.up(), Blocks.MOSS_CARPET.getDefaultState());

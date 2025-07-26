@@ -29,7 +29,7 @@ public class ModWorldGeneration {
 
         //LOCAL MODIFICATIONS
 
-        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.TAIGA), GenerationStep.Feature.LOCAL_MODIFICATIONS, ModPlacedFeatures.BOULDERS_PLACED_KEY);
+        //BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.TAIGA), GenerationStep.Feature.LOCAL_MODIFICATIONS, ModPlacedFeatures.BOULDERS_PLACED_KEY);
         BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.TAIGA), GenerationStep.Feature.LOCAL_MODIFICATIONS, ModPlacedFeatures.ROCKS_PLACED_KEY);
 
 
@@ -100,6 +100,10 @@ public class ModWorldGeneration {
                     context.getGenerationSettings().removeFeature(
                             GenerationStep.Feature.VEGETAL_DECORATION, VegetationPlacedFeatures.PATCH_PUMPKIN);});
 
+//        BiomeModifications.create(WildSproutTaiga.identifier("no_pumpkins")).add( ModificationPhase.REMOVALS,BiomeSelectors.includeByKey(BiomeKeys.TAIGA),
+//                context -> {
+//                    context.getGenerationSettings().removeFeature(
+//                            GenerationStep.Feature.VEGETAL_DECORATION, VegetationPlacedFeatures.TREES_TAIGA);});
 
 
     }

@@ -28,7 +28,7 @@ public class Boulders extends Feature<DefaultFeatureConfig> {
         ChunkRandom chunkRandom = new ChunkRandom(new CheckedRandom(structureWorldAccess.getSeed()));
         DoublePerlinNoiseSampler noise = DoublePerlinNoiseSampler.create(chunkRandom, -3, new double[]{1});
 
-        int radius = 3 + random.nextInt(4);
+        int radius = 2 + random.nextInt(3);
 
         center = center.down((int)Math.round(radius/1.5));
 
