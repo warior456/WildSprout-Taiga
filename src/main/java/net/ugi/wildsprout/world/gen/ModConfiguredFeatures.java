@@ -22,7 +22,7 @@ public class ModConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?,?>> ROCKS_KEY = registerKey("rocks");
     public static final RegistryKey<ConfiguredFeature<?,?>> WHEAT_PATCH_KEY = registerKey("wheat_patch");
 
-    public static final RegistryKey<ConfiguredFeature<?,?>> DIRT_PATCH_KEY = registerKey("dirt_patch");
+    public static final RegistryKey<ConfiguredFeature<?,?>> MOSS_KEY = registerKey("moss");
     public static final RegistryKey<ConfiguredFeature<?,?>> BUSHES_KEY = registerKey("bushes");
     public static final RegistryKey<ConfiguredFeature<?,?>> SMALL_RIVER_KEY = registerKey("small_river");
     public static final RegistryKey<ConfiguredFeature<?,?>> LAKE_KEY = registerKey("lake");
@@ -38,6 +38,10 @@ public class ModConfiguredFeatures {
         register(context,BOULDERS_KEY, ModFeatures.BOULDERS, new DefaultFeatureConfig());
         register(context,ROCKS_KEY, ModFeatures.ROCKS, new DefaultFeatureConfig());
         register(context, FLUFFY_SNOW_KEY, ModFeatures.FLUFFY_SNOW, new DefaultFeatureConfig());
+        register(context,MOSS_KEY, ModFeatures.MOSS, new DefaultFeatureConfig());
+        register(context, BERRY_PATCH_KEY, Feature.RANDOM_PATCH, new RandomPatchFeatureConfig(512, 16, 4, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
+                new SimpleBlockFeatureConfig(BlockStateProvider.of(Blocks.SWEET_BERRY_BUSH.getDefaultState().with(SweetBerryBushBlock.AGE,3))),
+                BlockPredicate.allOf(new BlockPredicate[]{BlockPredicate.matchingBlocks(Direction.DOWN.getVector(), new Block[]{Blocks.GRASS_BLOCK, Blocks.MOSS_BLOCK})}))));
 
 
     }

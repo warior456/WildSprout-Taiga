@@ -9,6 +9,7 @@ import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.feature.MiscPlacedFeatures;
 import net.minecraft.world.gen.feature.VegetationPlacedFeatures;
+import net.ugi.wildsprout.WildSproutTaiga;
 
 
 import java.util.ArrayList;
@@ -39,6 +40,7 @@ public class ModWorldGeneration {
         //STRONGHOLDS
 
         //UNDERGOUND ORES
+        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.TAIGA), GenerationStep.Feature.UNDERGROUND_ORES, ModPlacedFeatures.MOSS_PLACED_KEY);
 
         //UNDERGROUND DECORATION
 
@@ -53,10 +55,50 @@ public class ModWorldGeneration {
         //BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.PLAINS, BiomeKeys.SUNFLOWER_PLAINS), GenerationStep.Feature.TOP_LAYER_MODIFICATION, ModPlacedFeatures.SMALL_RIVER_PLACED_KEY);
 
         //MODIFY FEATURES
+        BiomeModifications.create(WildSproutTaiga.identifier("large_berry_bush_patch"))
+                .add(ModificationPhase.REPLACEMENTS,
+                        BiomeSelectors.includeByKey(BiomeKeys.TAIGA),
+                        context -> {
+                            // Identify the original feature to replace.
+                            context.getGenerationSettings().removeFeature(
+                                    GenerationStep.Feature.VEGETAL_DECORATION,
+                                    VegetationPlacedFeatures.PATCH_BERRY_COMMON
+                            );
+                            // Add new custom pumpkin patch feature.
+                            context.getGenerationSettings().addFeature(
+                                    GenerationStep.Feature.VEGETAL_DECORATION,
+                                    ModPlacedFeatures.BERRY_PATCH_PLACED_KEY
+                            );
+                        }
+                );
 
 
 
         // REMOVE FEATURES
+        BiomeModifications.create(WildSproutTaiga.identifier("no_lava_spring")).add( ModificationPhase.REMOVALS,BiomeSelectors.includeByKey(BiomeKeys.TAIGA),
+                context -> {
+                    context.getGenerationSettings().removeFeature(
+                            GenerationStep.Feature.FLUID_SPRINGS, MiscPlacedFeatures.SPRING_LAVA);});
+
+        BiomeModifications.create(WildSproutTaiga.identifier("no_lava_lake_surface")).add( ModificationPhase.REMOVALS,BiomeSelectors.includeByKey(BiomeKeys.TAIGA),
+                context -> {
+                    context.getGenerationSettings().removeFeature(
+                            GenerationStep.Feature.LAKES, MiscPlacedFeatures.LAKE_LAVA_SURFACE);});
+
+        BiomeModifications.create(WildSproutTaiga.identifier("no_lava_lake_underground")).add( ModificationPhase.REMOVALS,BiomeSelectors.includeByKey(BiomeKeys.TAIGA),
+                context -> {
+                    context.getGenerationSettings().removeFeature(
+                            GenerationStep.Feature.LAKES, MiscPlacedFeatures.LAKE_LAVA_UNDERGROUND);});
+
+        BiomeModifications.create(WildSproutTaiga.identifier("no_flowers")).add( ModificationPhase.REMOVALS,BiomeSelectors.includeByKey(BiomeKeys.TAIGA),
+                context -> {
+                    context.getGenerationSettings().removeFeature(
+                            GenerationStep.Feature.VEGETAL_DECORATION, VegetationPlacedFeatures.FLOWER_DEFAULT);});
+
+        BiomeModifications.create(WildSproutTaiga.identifier("no_pumpkins")).add( ModificationPhase.REMOVALS,BiomeSelectors.includeByKey(BiomeKeys.TAIGA),
+                context -> {
+                    context.getGenerationSettings().removeFeature(
+                            GenerationStep.Feature.VEGETAL_DECORATION, VegetationPlacedFeatures.PATCH_PUMPKIN);});
 
 
 

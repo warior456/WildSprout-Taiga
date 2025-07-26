@@ -18,7 +18,7 @@ public class ModPlacedFeatures {
     public static final RegistryKey<PlacedFeature> BOULDERS_PLACED_KEY = registerKey("boulders");
     public static final RegistryKey<PlacedFeature> ROCKS_PLACED_KEY = registerKey("rocks");
     public static final RegistryKey<PlacedFeature> WHEAT_PATCH_PLACED_KEY = registerKey("wheat_patch");
-    public static final RegistryKey<PlacedFeature> DIRT_PATCH_PLACED_KEY = registerKey("dirt_patch");
+    public static final RegistryKey<PlacedFeature> MOSS_PLACED_KEY = registerKey("moss");
     public static final RegistryKey<PlacedFeature> BUSHES_PLACED_KEY = registerKey("bushes");
     public static final RegistryKey<PlacedFeature> SMALL_RIVER_PLACED_KEY = registerKey("small_river");
     public static final RegistryKey<PlacedFeature> LAKE_PLACED_KEY = registerKey("lake");
@@ -36,15 +36,17 @@ public class ModPlacedFeatures {
         register(context,ROCKS_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.ROCKS_KEY), RarityFilterPlacementModifier.of(4), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
 /*
         register(context,WHEAT_PATCH_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.WHEAT_PATCH_KEY), CountPlacementModifier.of(20), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
-        register(context,DIRT_PATCH_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.DIRT_PATCH_KEY), CountPlacementModifier.of(20), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
+        */
+        register(context,MOSS_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.MOSS_KEY), CountPlacementModifier.of(20), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
+        /*
         register(context,BUSHES_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.BUSHES_KEY), RarityFilterPlacementModifier.of(16), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
         register(context,SMALL_RIVER_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.SMALL_RIVER_KEY), RarityFilterPlacementModifier.of(256), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
         register(context,LAKE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.LAKE_KEY), RarityFilterPlacementModifier.of(30), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
         //register(context,SMALL_RIVER_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.SMALL_RIVER_KEY), RarityFilterPlacementModifier.of(256), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
         register(context,PUMPKIN_PATCH_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.PUMPKIN_PATCH_KEY), RarityFilterPlacementModifier.of(300), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
         register(context,RANDOM_PATH_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.RANDOM_PATH_KEY), RarityFilterPlacementModifier.of(60), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
-        register(context,BERRY_PATCH_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.BERRY_PATCH_KEY), RarityFilterPlacementModifier.of(40), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
         */
+        register(context,BERRY_PATCH_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.BERRY_PATCH_KEY), RarityFilterPlacementModifier.of(40), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
         register(context,FLUFFY_SNOW_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.FLUFFY_SNOW_KEY), CountPlacementModifier.of(32), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
 
 
