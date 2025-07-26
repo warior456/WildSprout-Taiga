@@ -16,13 +16,13 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"net.ugi.wildsprout.WildSproutTaiga"
+			"net.ugi.wildsprout_taiga.WildSproutTaiga"
 		],
 		"client": [
-			"net.ugi.wildsprout.WildSproutTaigaClient"
+			"net.ugi.wildsprout_taiga.WildSproutTaigaClient"
 		],
 		"fabric-datagen": [
-			"net.ugi.wildsprout.WildSproutTaigaDataGenerator"
+			"net.ugi.wildsprout_taiga.WildSproutTaigaDataGenerator"
 		]
 	},
 	"mixins": [

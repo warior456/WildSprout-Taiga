@@ -1,6 +1,6 @@
 {
 	"required": true,
-	"package": "net.ugi.wildsprout.mixin.client",
+	"package": "net.ugi.wildsprout_taiga.mixin.client",
 	"compatibilityLevel": "JAVA_21",
 	"client": [
 		"ExampleClientMixin"
