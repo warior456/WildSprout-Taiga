@@ -21,8 +21,8 @@ public class ModTags {
         public static final TagKey<Block> CAN_BE_REPLACED_ALL =
                 createTag("can_be_replaced_all");
 
-        public static final TagKey<Block> VALID_PLAINS_GENERATE_BLOCK =
-                createTag("valid_plains_generate_block");
+        public static final TagKey<Block> VALID_TAIGA_GENERATE_BLOCK =
+                createTag("valid_taiga_generate_block");
 
         public static final TagKey<Block> VALID_ROCK_GENERATE_SLAB_ON =
                 createTag("valid_rock_generate_slab_on");

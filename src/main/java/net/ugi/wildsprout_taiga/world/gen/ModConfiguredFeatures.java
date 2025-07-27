@@ -20,14 +20,10 @@ public class ModConfiguredFeatures {
     public static final RegistryKey<ConfiguredFeature<?,?>> WHEAT_PATCH_KEY = registerKey("wheat_patch");
 
     public static final RegistryKey<ConfiguredFeature<?,?>> MOSS_KEY = registerKey("moss");
-    public static final RegistryKey<ConfiguredFeature<?,?>> BUSHES_KEY = registerKey("bushes");
-    public static final RegistryKey<ConfiguredFeature<?,?>> SMALL_RIVER_KEY = registerKey("small_river");
-    public static final RegistryKey<ConfiguredFeature<?,?>> LAKE_KEY = registerKey("lake");
-    //public static final RegistryKey<ConfiguredFeature<?,?>> SMALL_RIVER_KEY = registerKey("small_river");
-    public static final RegistryKey<ConfiguredFeature<?,?>> PUMPKIN_PATCH_KEY = registerKey("pumpkin_patch");
     public static final RegistryKey<ConfiguredFeature<?,?>> RANDOM_PATH_KEY = registerKey("random_path");
     public static final RegistryKey<ConfiguredFeature<?,?>> BERRY_PATCH_KEY = registerKey("berry_patch");
     public static final RegistryKey<ConfiguredFeature<?,?>> FLUFFY_SNOW_KEY = registerKey("fluffy_snow");
+    public static final RegistryKey<ConfiguredFeature<?,?>> FALLEN_TREE_KEY = registerKey("fallen_tree");
 
     public static void bootstrap(Registerable<ConfiguredFeature<?, ?>> context) {
 
@@ -36,6 +32,7 @@ public class ModConfiguredFeatures {
         register(context,ROCKS_KEY, ModFeatures.ROCKS, new DefaultFeatureConfig());
         register(context, FLUFFY_SNOW_KEY, ModFeatures.FLUFFY_SNOW, new DefaultFeatureConfig());
         register(context,MOSS_KEY, ModFeatures.MOSS, new DefaultFeatureConfig());
+        register(context,FALLEN_TREE_KEY, ModFeatures.FALLEN_TREE, new DefaultFeatureConfig());
         register(context, BERRY_PATCH_KEY, Feature.RANDOM_PATCH, new RandomPatchFeatureConfig(512, 16, 4, PlacedFeatures.createEntry(Feature.SIMPLE_BLOCK,
                 new SimpleBlockFeatureConfig(BlockStateProvider.of(Blocks.SWEET_BERRY_BUSH.getDefaultState().with(SweetBerryBushBlock.AGE,3))),
                 BlockPredicate.allOf(new BlockPredicate[]{BlockPredicate.matchingBlocks(Direction.DOWN.getVector(), new Block[]{Blocks.GRASS_BLOCK, Blocks.MOSS_BLOCK})}))));

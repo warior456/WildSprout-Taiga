@@ -27,6 +27,7 @@ public class ModPlacedFeatures {
     public static final RegistryKey<PlacedFeature> RANDOM_PATH_PLACED_KEY = registerKey("random_path");
     public static final RegistryKey<PlacedFeature> BERRY_PATCH_PLACED_KEY = registerKey("berry_patch");
     public static final RegistryKey<PlacedFeature> FLUFFY_SNOW_PLACED_KEY = registerKey("fluffy_snow");
+    public static final RegistryKey<PlacedFeature> FALLEN_TREE_PLACED_KEY = registerKey("fallen_tree");
 
 
     public static void bootstrap(Registerable<PlacedFeature> context) {
@@ -48,6 +49,7 @@ public class ModPlacedFeatures {
         */
         register(context,BERRY_PATCH_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.BERRY_PATCH_KEY), RarityFilterPlacementModifier.of(40), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
         register(context,FLUFFY_SNOW_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.FLUFFY_SNOW_KEY), CountPlacementModifier.of(32), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
+        register(context,FALLEN_TREE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.FALLEN_TREE_KEY), SquarePlacementModifier.of(), PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP, BiomePlacementModifier.of());
 
 
     }
