@@ -149,7 +149,6 @@ public class Rocks extends Feature<DefaultFeatureConfig> {
         allBlocksPos.addAll(fullBlocksPos);
 
         List<BlockPos> mossCarpetPos = this.getmossCarpetPos(fullBlocksPos, slabBlocksPos);
-        System.out.println(mossCarpetPos.size());
         List<BlockPos> allBlocksPosCopyForMoss = new ArrayList<>(allBlocksPos);
 
         int rockSize = allBlocksPos.size();

@@ -47,6 +47,7 @@ public class ModWorldGeneration {
         //FLUID SPRINGS
 
         //VEGETAL DECORATION
+        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.TAIGA), GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.TREES_PLACED_KEY);
 
 
 
@@ -100,10 +101,10 @@ public class ModWorldGeneration {
                     context.getGenerationSettings().removeFeature(
                             GenerationStep.Feature.VEGETAL_DECORATION, VegetationPlacedFeatures.PATCH_PUMPKIN);});
 
-//        BiomeModifications.create(WildSproutTaiga.identifier("no_pumpkins")).add( ModificationPhase.REMOVALS,BiomeSelectors.includeByKey(BiomeKeys.TAIGA),
-//                context -> {
-//                    context.getGenerationSettings().removeFeature(
-//                            GenerationStep.Feature.VEGETAL_DECORATION, VegetationPlacedFeatures.TREES_TAIGA);});
+        BiomeModifications.create(WildSproutTaiga.identifier("no_old_trees")).add( ModificationPhase.REMOVALS,BiomeSelectors.includeByKey(BiomeKeys.TAIGA),
+                context -> {
+                    context.getGenerationSettings().removeFeature(
+                            GenerationStep.Feature.VEGETAL_DECORATION, VegetationPlacedFeatures.TREES_TAIGA);});
 
 
     }
