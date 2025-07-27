@@ -29,6 +29,7 @@ public class ModPlacedFeatures {
     public static final RegistryKey<PlacedFeature> FLUFFY_SNOW_PLACED_KEY = registerKey("fluffy_snow");
     public static final RegistryKey<PlacedFeature> TREES_PLACED_KEY = registerKey("trees");
     public static final RegistryKey<PlacedFeature> FALLEN_TREE_PLACED_KEY = registerKey("fallen_tree");
+    public static final RegistryKey<PlacedFeature> OLD_TAIGA_TREES_PLACED_KEY = registerKey("old_taiga_trees");
 
 
     public static void bootstrap(Registerable<PlacedFeature> context) {
@@ -50,8 +51,9 @@ public class ModPlacedFeatures {
         */
         register(context,BERRY_PATCH_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.BERRY_PATCH_KEY), RarityFilterPlacementModifier.of(40), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
         register(context,FLUFFY_SNOW_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.FLUFFY_SNOW_KEY), CountPlacementModifier.of(32), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
-        register(context,TREES_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.TREES_KEY), CountPlacementModifier.of(1), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
+        register(context,TREES_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.TREES_KEY), CountPlacementModifier.of(5), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
         register(context,FALLEN_TREE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.FALLEN_TREE_KEY), SquarePlacementModifier.of(), PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP, BiomePlacementModifier.of());
+        register(context,OLD_TAIGA_TREES_PLACED_KEY, configuredFeatures.getOrThrow(VegetationConfiguredFeatures.TREES_TAIGA), CountPlacementModifier.of(5), SquarePlacementModifier.of(), SurfaceWaterDepthFilterPlacementModifier.of(0), PlacedFeatures.OCEAN_FLOOR_HEIGHTMAP, BiomePlacementModifier.of());
 
 
     }

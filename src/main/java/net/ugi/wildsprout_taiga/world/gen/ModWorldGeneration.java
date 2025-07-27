@@ -30,7 +30,7 @@ public class ModWorldGeneration {
         //LOCAL MODIFICATIONS
 
         //BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.TAIGA), GenerationStep.Feature.LOCAL_MODIFICATIONS, ModPlacedFeatures.BOULDERS_PLACED_KEY);
-        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.TAIGA), GenerationStep.Feature.LOCAL_MODIFICATIONS, ModPlacedFeatures.ROCKS_PLACED_KEY);
+        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.TAIGA, BiomeKeys.SNOWY_TAIGA), GenerationStep.Feature.LOCAL_MODIFICATIONS, ModPlacedFeatures.ROCKS_PLACED_KEY);
 
 
         //UNDERGOUNDS STRUCTURES
@@ -47,9 +47,9 @@ public class ModWorldGeneration {
         //FLUID SPRINGS
 
         //VEGETAL DECORATION
-        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.TAIGA), GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.TREES_PLACED_KEY);
+        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.TAIGA, BiomeKeys.SNOWY_TAIGA), GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.TREES_PLACED_KEY);
 
-        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.TAIGA), GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.FALLEN_TREE_PLACED_KEY);
+        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.TAIGA, BiomeKeys.SNOWY_TAIGA), GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.FALLEN_TREE_PLACED_KEY);
 
         //TOP LAYER MODIFICATION
         BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.SNOWY_TAIGA), GenerationStep.Feature.TOP_LAYER_MODIFICATION, ModPlacedFeatures.FLUFFY_SNOW_PLACED_KEY);
@@ -69,6 +69,23 @@ public class ModWorldGeneration {
                             context.getGenerationSettings().addFeature(
                                     GenerationStep.Feature.VEGETAL_DECORATION,
                                     ModPlacedFeatures.BERRY_PATCH_PLACED_KEY
+                            );
+                        }
+                );
+
+        BiomeModifications.create(WildSproutTaiga.identifier("less_old_trees"))
+                .add(ModificationPhase.REPLACEMENTS,
+                        BiomeSelectors.includeByKey(BiomeKeys.TAIGA, BiomeKeys.SNOWY_TAIGA),
+                        context -> {
+                            // Identify the original feature to replace.
+                            context.getGenerationSettings().removeFeature(
+                                    GenerationStep.Feature.VEGETAL_DECORATION,
+                                    VegetationPlacedFeatures.TREES_TAIGA
+                            );
+                            // Add new custom pumpkin patch feature.
+                            context.getGenerationSettings().addFeature(
+                                    GenerationStep.Feature.VEGETAL_DECORATION,
+                                    ModPlacedFeatures.OLD_TAIGA_TREES_PLACED_KEY
                             );
                         }
                 );
@@ -100,11 +117,11 @@ public class ModWorldGeneration {
                 context -> {
                     context.getGenerationSettings().removeFeature(
                             GenerationStep.Feature.VEGETAL_DECORATION, VegetationPlacedFeatures.PATCH_PUMPKIN);});
-
-        BiomeModifications.create(WildSproutTaiga.identifier("no_old_trees")).add( ModificationPhase.REMOVALS,BiomeSelectors.includeByKey(BiomeKeys.TAIGA),
-                context -> {
-                    context.getGenerationSettings().removeFeature(
-                            GenerationStep.Feature.VEGETAL_DECORATION, VegetationPlacedFeatures.TREES_TAIGA);});
+//
+//        BiomeModifications.create(WildSproutTaiga.identifier("no_old_trees")).add( ModificationPhase.REMOVALS,BiomeSelectors.includeByKey(BiomeKeys.TAIGA),
+//                context -> {
+//                    context.getGenerationSettings().removeFeature(
+//                            GenerationStep.Feature.VEGETAL_DECORATION, VegetationPlacedFeatures.TREES_TAIGA);});
 
 
     }

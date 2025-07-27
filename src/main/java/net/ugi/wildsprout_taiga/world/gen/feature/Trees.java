@@ -15,6 +15,7 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
 import net.ugi.wildsprout_taiga.tags.ModTags;
 import net.ugi.wildsprout_taiga.world.gen.feature.spruce_trees.Spruce1;
+import net.ugi.wildsprout_taiga.world.gen.feature.spruce_trees.Spruce2;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +28,12 @@ public class Trees extends Feature<DefaultFeatureConfig> {
 
     @Override
     public boolean generate(FeatureContext<DefaultFeatureConfig> context) {
-        return Spruce1.generate(context);
+        Random random = context.getRandom();
+        if (random.nextBoolean()) {
+            return Spruce1.generate(context);
+        } else {
+            return Spruce2.generate(context);
+        }
     }
 }
 
