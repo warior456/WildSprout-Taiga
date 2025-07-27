@@ -51,7 +51,7 @@ public class FallenTree extends Feature<DefaultFeatureConfig> {
                 endPos.getY() - startPos.getY(),
                 endPos.getZ() - startPos.getZ()
         );
-        if(direction.getY() > 4 || direction.length()<3|| Math.abs(Math.abs(direction.getX()) - Math.abs(direction.getZ())) < 2){
+        if(Math.abs(direction.getY()) > 4 || direction.length()<3|| Math.abs(Math.abs(direction.getX()) - Math.abs(direction.getZ())) < 2){
             return false;
         }
         if(!structureWorldAccess.getBlockState(startPos.down()).isIn(ModTags.Blocks.VALID_TAIGA_GENERATE_BLOCK) || !structureWorldAccess.getBlockState(endPos.down()).isIn(ModTags.Blocks.VALID_TAIGA_GENERATE_BLOCK)){
@@ -63,46 +63,95 @@ public class FallenTree extends Feature<DefaultFeatureConfig> {
         BlockPos[] BlockPosArray = getBlockposArray(startPos);
         List<BlockPos> placeList = new ArrayList<>();
         for (BlockPos pos : BlockPosArray) {
-            if (structureWorldAccess.getBlockState(pos).isIn(ModTags.Blocks.CAN_BE_REPLACED_ALL)) {
+            if (structureWorldAccess.getBlockState(pos).isIn(ModTags.Blocks.CAN_BE_REPLACED_NON_SOLID)) {
                 placeList.add(pos);
             } else {
                 return false;
             }
         }
+        placeList.remove(1);
 
         for (BlockPos pos : placeList){
-            if (structureWorldAccess.getBlockState(pos).isIn(ModTags.Blocks.CAN_BE_REPLACED_ALL)) {
-                structureWorldAccess.setBlockState(pos, Blocks.OAK_LOG.getDefaultState().with(PillarBlock.AXIS, axis), 2);
+            /*if (structureWorldAccess.getBlockState(pos).isIn(ModTags.Blocks.CAN_BE_REPLACED_ALL) ) {continue}*/
+            structureWorldAccess.setBlockState(pos, Blocks.SPRUCE_LOG.getDefaultState().with(PillarBlock.AXIS, axis), 0);
+            //top decoration
+            if(structureWorldAccess.getBlockState(pos.up()).isIn(ModTags.Blocks.CAN_BE_REPLACED_ALL)) {
 
-                //top decoration
-                if(structureWorldAccess.getBlockState(pos.up()).isIn(ModTags.Blocks.CAN_BE_REPLACED_ALL)) {
 
-                    if (random.nextDouble() < 1) {//decorate with mushrooms //todo decorate around with mushrooms
-                        if (random.nextBoolean()) {
-                            structureWorldAccess.setBlockState(pos.up(), Blocks.BROWN_MUSHROOM.getDefaultState(), 2);//somehow doesn't work with high light levels
-                        } else {
-                            structureWorldAccess.setBlockState(pos.up(), Blocks.RED_MUSHROOM.getDefaultState(), 2);
+
+                if(random.nextDouble()<0.7) {//decorate with moss
+                    if(structureWorldAccess.getBlockState(pos.up()).isIn(ModTags.Blocks.CAN_BE_REPLACED_NON_SOLID)){
+                        structureWorldAccess.setBlockState(pos.up(), Blocks.MOSS_CARPET.getDefaultState(), 2);
+                    }
+
+                    if(structureWorldAccess.getBlockState(pos.down()).isIn(ModTags.Blocks.VALID_TAIGA_GENERATE_BLOCK)) {
+                        if (random.nextDouble() < 0.15) {
+                            structureWorldAccess.setBlockState(pos, Blocks.MOSS_BLOCK.getDefaultState(), 2);
+                        }
+                    }
+                }
+
+                if (random.nextDouble() < 0.15) {//decorate with mushrooms
+                    setMushRoomOn(pos, structureWorldAccess, random);
+                }
+
+
+            }
+            if(structureWorldAccess.getBlockState(pos.down()).isIn(ModTags.Blocks.VALID_TAIGA_GENERATE_BLOCK)) {
+                if( random.nextDouble() < 0.7) {//decorate around with mushrooms
+                    if (random.nextDouble() < 0.5) {
+                        if (structureWorldAccess.getBlockState(pos.down().north()).isIn(ModTags.Blocks.CAN_BE_REPLACED_SOLID)) {
+                            structureWorldAccess.setBlockState(pos.down().north(), Blocks.PODZOL.getDefaultState(), 2);
+                            if (random.nextDouble() < 0.3) {
+                                setMushRoomOn(pos.down().north(), structureWorldAccess, random);
+                            }
+                        }
+                    }
+                    if (random.nextDouble() < 0.5) {
+                        if(structureWorldAccess.getBlockState(pos.down().south()).isIn(ModTags.Blocks.CAN_BE_REPLACED_SOLID)) {
+                            structureWorldAccess.setBlockState(pos.down().south(), Blocks.PODZOL.getDefaultState(), 2);
+                            if( random.nextDouble() < 0.3) {
+                                setMushRoomOn(pos.down().south(), structureWorldAccess, random);
+                            }
+                        }
+                    }
+                    if (random.nextDouble() < 0.5) {
+                        if(structureWorldAccess.getBlockState(pos.down().east()).isIn(ModTags.Blocks.CAN_BE_REPLACED_SOLID)) {
+                            structureWorldAccess.setBlockState(pos.down().east(), Blocks.PODZOL.getDefaultState(), 2);
+                            if( random.nextDouble() < 0.3) {
+                                setMushRoomOn(pos.down().east(), structureWorldAccess, random);
+                            }
+                        }
+                    }
+                    if (random.nextDouble() < 0.5) {
+                        if (structureWorldAccess.getBlockState(pos.down().west()).isIn(ModTags.Blocks.CAN_BE_REPLACED_SOLID)) {
+                            structureWorldAccess.setBlockState(pos.down().west(), Blocks.PODZOL.getDefaultState(), 2);
+                            if( random.nextDouble() < 0.3) {
+                                setMushRoomOn(pos.down().west(), structureWorldAccess, random);
+                            }
                         }
                     }
 
-/*                    if(random.nextDouble()<0.65) {//decorate with moss
-                        if(!(structureWorldAccess.getBlockState(pos.up()).getBlock() == Blocks.BROWN_MUSHROOM || structureWorldAccess.getBlockState(pos.up()).getBlock() == Blocks.RED_MUSHROOM)){
-                            continue;
-                        }
-                        structureWorldAccess.setBlockState(pos.up(), Blocks.MOSS_CARPET.getDefaultState(), 2);
-                        if (random.nextDouble() < 0.2) {
-                            structureWorldAccess.setBlockState(pos, Blocks.MOSS_BLOCK.getDefaultState(), 2);
-                        }
-                    }*/
-
-
-
                 }
             }
+
+
+
         }
+        structureWorldAccess.setBlockState(startPos, Blocks.SPRUCE_LOG.getDefaultState(), 0);
         return true;
 
     }
+
+    public void setMushRoomOn(BlockPos pos, StructureWorldAccess world, Random random) {
+        if(!world.getBlockState(pos.up()).isIn(ModTags.Blocks.CAN_BE_REPLACED_NON_SOLID)) return;
+        if (random.nextBoolean()) {
+            world.setBlockState(pos.up(), Blocks.BROWN_MUSHROOM.getDefaultState(), 2);
+        } else {
+            world.setBlockState(pos.up(), Blocks.RED_MUSHROOM.getDefaultState(), 2);
+        }
+    }
+
 
     public  BlockPos[] getBlockposArray(BlockPos startPos) {
         BlockPos[] blockPosArray = new BlockPos[this.steps];
