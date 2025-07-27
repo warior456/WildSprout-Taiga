@@ -55,7 +55,7 @@ public class Boulders extends Feature<DefaultFeatureConfig> {
 
         center = new BlockPos(center.getX(),j,center.getZ());
 
-        if (!(structureWorldAccess.getBlockState(center.down()).isIn(ModTags.Blocks.VALID_PLAINS_GENERATE_BLOCK))) return false;
+        if (!(structureWorldAccess.getBlockState(center.down()).isIn(ModTags.Blocks.VALID_TAIGA_GENERATE_BLOCK))) return false;
 
         List<BlockState> possibleBlocks = new ArrayList<>();
         possibleBlocks.add(Blocks.STONE.getDefaultState());

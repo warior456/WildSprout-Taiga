@@ -19,21 +19,26 @@ public class ModBlockTagProvider extends FabricTagProvider.BlockTagProvider {
         getOrCreateTagBuilder(ModTags.Blocks.CAN_BE_REPLACED_NON_SOLID)
                 .add(Blocks.AIR)
                 .add(Blocks.SHORT_GRASS)
-                .add(Blocks.SNOW);
+                .add(Blocks.TALL_GRASS)
+                .add(Blocks.SNOW)
+                .add(Blocks.FERN)
+                .add(Blocks.LARGE_FERN);
 
         getOrCreateTagBuilder(ModTags.Blocks.CAN_BE_REPLACED_SOLID)
                 .add(Blocks.GRASS_BLOCK)
                 .add(Blocks.DIRT)
-                .add(Blocks.COARSE_DIRT);
+                .add(Blocks.COARSE_DIRT)
+                .add(Blocks.MOSS_CARPET);
 
         getOrCreateTagBuilder(ModTags.Blocks.CAN_BE_REPLACED_ALL)
                 .addTag(ModTags.Blocks.CAN_BE_REPLACED_NON_SOLID)
                 .addTag(ModTags.Blocks.CAN_BE_REPLACED_SOLID);
 
-        getOrCreateTagBuilder(ModTags.Blocks.VALID_PLAINS_GENERATE_BLOCK)
+        getOrCreateTagBuilder(ModTags.Blocks.VALID_TAIGA_GENERATE_BLOCK)
                 .add(Blocks.GRASS_BLOCK)
                 .add(Blocks.DIRT)
-                .add(Blocks.COARSE_DIRT);
+                .add(Blocks.COARSE_DIRT)
+                .add(Blocks.MOSS_BLOCK);
 
         getOrCreateTagBuilder(ModTags.Blocks.OVERRIDE_SNOW_LAYER_CANNOT_SURVIVE_ON)
                 .add(Blocks.ICE)

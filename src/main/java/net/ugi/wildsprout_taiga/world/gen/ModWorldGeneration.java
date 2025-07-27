@@ -49,7 +49,7 @@ public class ModWorldGeneration {
         //VEGETAL DECORATION
         BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.TAIGA), GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.TREES_PLACED_KEY);
 
-
+        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.TAIGA), GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.FALLEN_TREE_PLACED_KEY);
 
         //TOP LAYER MODIFICATION
         BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.SNOWY_TAIGA), GenerationStep.Feature.TOP_LAYER_MODIFICATION, ModPlacedFeatures.FLUFFY_SNOW_PLACED_KEY);

@@ -2,6 +2,9 @@
   "values": [
     "minecraft:air",
     "minecraft:short_grass",
-    "minecraft:snow"
+    "minecraft:tall_grass",
+    "minecraft:snow",
+    "minecraft:fern",
+    "minecraft:large_fern"
   ]
 }

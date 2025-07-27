@@ -1,11 +1,9 @@
 package net.ugi.wildsprout_taiga.world.gen.feature;
 
 import com.mojang.serialization.Codec;
-import com.sun.source.tree.WhileLoopTree;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
-import net.minecraft.registry.tag.BlockTags;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.noise.DoublePerlinNoiseSampler;
@@ -220,7 +218,7 @@ public class Rocks extends Feature<DefaultFeatureConfig> {
 
         center = new BlockPos(center.getX(),j,center.getZ());
 
-        if (!(structureWorldAccess.getBlockState(center.down()).isIn(ModTags.Blocks.VALID_PLAINS_GENERATE_BLOCK))) return false;
+        if (!(structureWorldAccess.getBlockState(center.down()).isIn(ModTags.Blocks.VALID_TAIGA_GENERATE_BLOCK))) return false;
 
         center = center.down();
 
