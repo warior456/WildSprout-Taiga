@@ -25,6 +25,6 @@ public class ModFeatures {
         Registry.register(Registries.FEATURE, WildSproutTaiga.identifier( "moss"), MOSS);
         Registry.register(Registries.FEATURE, WildSproutTaiga.identifier( "fallen_tree"), FALLEN_TREE);
         Registry.register(Registries.FEATURE, WildSproutTaiga.identifier( "trees"), TREES);
-
+        //test
     }
 }
