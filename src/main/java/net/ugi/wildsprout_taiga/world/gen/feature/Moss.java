@@ -38,7 +38,7 @@ public class Moss extends Feature<DefaultFeatureConfig> {
 
         for (int i = -(featureSize/2);i< (featureSize+1)/2;i++){
             for (int k = -(featureSize/2);k< (featureSize+1)/2;k++){
-                int j = structureWorldAccess.getChunk(new BlockPos(x + i,y,z + k)).getHeightmap(Heightmap.Type.WORLD_SURFACE_WG).get((32+i+x%16)%16, (32+k+z%16)%16);
+                int j = structureWorldAccess.getChunk(new BlockPos(x + i,y,z + k)).getHeightmap(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES).get((32+i+x%16)%16, (32+k+z%16)%16);
                 BlockPos pos = new BlockPos(x+i,j -1,z+k);
 
                 if (!(structureWorldAccess.getBlockState(pos).isIn(ModTags.Blocks.CAN_BE_REPLACED_SOLID))) continue;

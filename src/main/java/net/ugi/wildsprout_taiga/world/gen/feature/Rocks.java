@@ -214,7 +214,7 @@ public class Rocks extends Feature<DefaultFeatureConfig> {
         BlockPos center = context.getOrigin();
         Random random = context.getRandom();
 
-        int j = structureWorldAccess.getChunk(new BlockPos(center.getX(),center.getY(),center.getZ())).getHeightmap(Heightmap.Type.WORLD_SURFACE_WG).get((32+center.getX()%16)%16, (32+center.getZ()%16)%16);
+        int j = structureWorldAccess.getChunk(new BlockPos(center.getX(),center.getY(),center.getZ())).getHeightmap(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES).get((32+center.getX()%16)%16, (32+center.getZ()%16)%16);
 
         center = new BlockPos(center.getX(),j,center.getZ());
 

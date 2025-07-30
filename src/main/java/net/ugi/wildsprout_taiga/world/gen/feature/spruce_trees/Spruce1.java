@@ -21,10 +21,10 @@ public class Spruce1 {
         BlockPos center = context.getOrigin();
         Random random = context.getRandom();
 
-        ChunkRandom chunkRandom = new ChunkRandom(new CheckedRandom(structureWorldAccess.getSeed()));
-        DoublePerlinNoiseSampler noise = DoublePerlinNoiseSampler.create(chunkRandom, -2, new double[]{1});
+//        ChunkRandom chunkRandom = new ChunkRandom(new CheckedRandom(structureWorldAccess.getSeed()));
+//        DoublePerlinNoiseSampler noise = DoublePerlinNoiseSampler.create(chunkRandom, -2, new double[]{1});
 
-        int j = structureWorldAccess.getChunk(new BlockPos(center.getX(),center.getY(),center.getZ())).getHeightmap(Heightmap.Type.WORLD_SURFACE_WG).get((32+center.getX()%16)%16, (32+center.getZ()%16)%16);
+        int j = structureWorldAccess.getChunk(new BlockPos(center.getX(),center.getY(),center.getZ())).getHeightmap(Heightmap.Type.MOTION_BLOCKING).get((32+center.getX()%16)%16, (32+center.getZ()%16)%16);
 
         center = new BlockPos(center.getX(),j,center.getZ());
 
@@ -45,7 +45,7 @@ public class Spruce1 {
                 }
                 for (BlockPos pos2 : BlockPos.iterate(pos.add(-(int)Math.round(leavesRadius*2), 0, -(int)Math.round(leavesRadius*2)), pos.add((int)Math.round(leavesRadius*2), 0, (int)Math.round(leavesRadius*2)))) {
                     double distance = pos.getSquaredDistance(pos2);
-                    if (distance <= leavesRadius * leavesRadius + noise.sample(pos2.getX(), pos2.getY(), pos2.getZ())* Math.clamp(leavesRadius - 2, 0, 100)) {
+                    if (distance <= leavesRadius * leavesRadius /*+ noise.sample(pos2.getX(), pos2.getY(), pos2.getZ())* Math.clamp(leavesRadius - 2, 0, 100)*/) {
                         if (!structureWorldAccess.getBlockState(pos2).isIn(ModTags.Blocks.CAN_BE_REPLACED_NON_SOLID)) continue;
 
                         double r = random.nextDouble();
@@ -59,6 +59,7 @@ public class Spruce1 {
             if (leavesRadius < 0) break;
         }
 
+        System.out.println(context.getWorld().getChunk(context.getOrigin()).getPos());
         return true;
     }
 

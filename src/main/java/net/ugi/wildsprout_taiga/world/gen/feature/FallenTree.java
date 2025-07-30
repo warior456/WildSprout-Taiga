@@ -39,10 +39,10 @@ public class FallenTree extends Feature<DefaultFeatureConfig> {
 
 
         BlockPos startPos = blockPos.add(random.nextBetween(-featureSize, featureSize), 0, random.nextBetween(-featureSize, featureSize));
-        startPos =  new BlockPos(startPos.getX(), structureWorldAccess.getTopY(Heightmap.Type.WORLD_SURFACE_WG, startPos.getX(), startPos.getZ()), startPos.getZ());
+        startPos =  new BlockPos(startPos.getX(), structureWorldAccess.getTopY(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, startPos.getX(), startPos.getZ()), startPos.getZ());
 
         BlockPos endPos = blockPos.add(random.nextBetween(-featureSize, featureSize), 0, random.nextBetween(-featureSize, featureSize));
-        endPos =  new BlockPos(endPos.getX(), structureWorldAccess.getTopY(Heightmap.Type.WORLD_SURFACE_WG, endPos.getX(), endPos.getZ()), endPos.getZ());
+        endPos =  new BlockPos(endPos.getX(), structureWorldAccess.getTopY(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, endPos.getX(), endPos.getZ()), endPos.getZ());
 
 
 

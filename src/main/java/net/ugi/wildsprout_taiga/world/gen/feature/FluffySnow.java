@@ -72,7 +72,7 @@ public class FluffySnow extends Feature<DefaultFeatureConfig> {
                 }
 
                 if (structureWorldAccess.getBlockState(pos.down()).isIn(BlockTags.LEAVES)){
-                    int j2 = structureWorldAccess.getChunk(new BlockPos(x + i,y,z + k)).getHeightmap(Heightmap.Type.WORLD_SURFACE_WG).get((32+i+x%16)%16, (32+k+z%16)%16);
+                    int j2 = structureWorldAccess.getChunk(new BlockPos(x + i,y,z + k)).getHeightmap(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES).get((32+i+x%16)%16, (32+k+z%16)%16);
                     int difference = j - j2;
                     for (int j3 = 0; j3 <= difference; j3++) {
 
