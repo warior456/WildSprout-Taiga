@@ -25,6 +25,7 @@ public class ModFeatures {
     public static final Feature<DefaultFeatureConfig> ROCKS = new Rocks(DefaultFeatureConfig.CODEC);
     public static final Feature<DefaultFeatureConfig> FLUFFY_SNOW = new FluffySnow(DefaultFeatureConfig.CODEC);
     public static final Feature<DefaultFeatureConfig> MOSS = new Moss(DefaultFeatureConfig.CODEC);
+    public static final Feature<DefaultFeatureConfig> MOSS_PATCH = new MossPatch(DefaultFeatureConfig.CODEC);
     public static final Feature<DefaultFeatureConfig> TREES = new Trees(DefaultFeatureConfig.CODEC);
     public static final Feature<DefaultFeatureConfig> FALLEN_TREE = new FallenTree(DefaultFeatureConfig.CODEC);
 
@@ -33,6 +34,7 @@ public class ModFeatures {
         Registry.register(Registries.FEATURE, WildSproutTaiga.identifier( "rocks"), ROCKS);
         Registry.register(Registries.FEATURE, WildSproutTaiga.identifier( "fluffy_snow"), FLUFFY_SNOW);
         Registry.register(Registries.FEATURE, WildSproutTaiga.identifier( "moss"), MOSS);
+        Registry.register(Registries.FEATURE, WildSproutTaiga.identifier( "moss_patch"), MOSS_PATCH);
         Registry.register(Registries.FEATURE, WildSproutTaiga.identifier( "fallen_tree"), FALLEN_TREE);
         Registry.register(Registries.FEATURE, WildSproutTaiga.identifier( "trees"), TREES);
 

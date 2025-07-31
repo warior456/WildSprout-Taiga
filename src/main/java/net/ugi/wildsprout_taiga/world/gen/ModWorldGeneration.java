@@ -41,6 +41,7 @@ public class ModWorldGeneration {
 
         //UNDERGOUND ORES
         BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.TAIGA), GenerationStep.Feature.UNDERGROUND_ORES, ModPlacedFeatures.MOSS_PLACED_KEY);
+        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.OLD_GROWTH_PINE_TAIGA, BiomeKeys.OLD_GROWTH_SPRUCE_TAIGA), GenerationStep.Feature.UNDERGROUND_ORES, ModPlacedFeatures.MOSS_PATCH_PLACED_KEY);
 
         //UNDERGROUND DECORATION
 
