@@ -27,7 +27,7 @@ public class Moss extends Feature<DefaultFeatureConfig> {
         BlockPos blockPos = context.getOrigin();
         StructureWorldAccess structureWorldAccess = context.getWorld();
         Random random = context.getRandom();
-        int featureSize = 5;
+        int featureSize = 7;
 
         ChunkRandom chunkRandom = new ChunkRandom(new CheckedRandom(structureWorldAccess.getSeed()+1));
         DoublePerlinNoiseSampler dirtPatchesNoise = DoublePerlinNoiseSampler.create(chunkRandom, -5, new double[]{1});
@@ -44,12 +44,17 @@ public class Moss extends Feature<DefaultFeatureConfig> {
                 if (!(structureWorldAccess.getBlockState(pos).isIn(ModTags.Blocks.CAN_BE_REPLACED_SOLID))) continue;
 
                 double noiseSample = dirtPatchesNoise.sample(pos.getX(), pos.getY(), pos.getZ());
-                if (!(random.nextDouble() < noiseSample*10 -5)){
+                if (!(random.nextDouble() < noiseSample*10 -2)){
                     this.setBlockState(structureWorldAccess, pos, Blocks.MOSS_BLOCK.getDefaultState());
 
                     if (!(structureWorldAccess.getBlockState(pos.up()).isIn(ModTags.Blocks.CAN_BE_REPLACED_NON_SOLID))) continue;
 
                     int r = random.nextInt(100);
+                    // removes buggy floating ferns
+                    if (r < 41 && structureWorldAccess.getBlockState(pos.up(2)).getBlock().equals(Blocks.LARGE_FERN)){
+                        this.setBlockState(structureWorldAccess, pos.up(2), Blocks.AIR.getDefaultState());
+                    }
+
                     if (r < 25) {
                         this.setBlockState(structureWorldAccess, pos.up(), Blocks.MOSS_CARPET.getDefaultState());
                     } else if (r < 35) {

@@ -16,19 +16,10 @@ import net.ugi.wildsprout_taiga.tags.ModTags;
 
 public class Spruce1 {
 
-    public static boolean generate(FeatureContext<DefaultFeatureConfig> context){
+    public static boolean generate(FeatureContext<DefaultFeatureConfig> context, BlockPos center){
         StructureWorldAccess structureWorldAccess = context.getWorld();
-        BlockPos center = context.getOrigin();
         Random random = context.getRandom();
 
-//        ChunkRandom chunkRandom = new ChunkRandom(new CheckedRandom(structureWorldAccess.getSeed()));
-//        DoublePerlinNoiseSampler noise = DoublePerlinNoiseSampler.create(chunkRandom, -2, new double[]{1});
-
-        int j = structureWorldAccess.getChunk(new BlockPos(center.getX(),center.getY(),center.getZ())).getHeightmap(Heightmap.Type.MOTION_BLOCKING).get((32+center.getX()%16)%16, (32+center.getZ()%16)%16);
-
-        center = new BlockPos(center.getX(),j,center.getZ());
-
-//        structureWorldAccess.setBlockState(center.up(30), Blocks.DIAMOND_BLOCK.getDefaultState(),3);
 
         int height = 10 + random.nextInt(5);
         int logheight = height - 2 - random.nextInt(2);

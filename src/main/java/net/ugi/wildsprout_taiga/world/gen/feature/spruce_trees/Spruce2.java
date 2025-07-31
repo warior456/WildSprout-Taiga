@@ -69,7 +69,8 @@ public class Spruce2 {
 
         for (BlockPos branchPos : blockPosArray) {
             leaves(world, random, branchPos, 1);
-            world.setBlockState(branchPos, Blocks.SPRUCE_FENCE.getDefaultState().with(FenceBlock.NORTH,true).with(FenceBlock.EAST,true).with(FenceBlock.SOUTH,true).with(FenceBlock.WEST,true), 3);
+            //world.setBlockState(branchPos, Blocks.SPRUCE_FENCE.getDefaultState().with(FenceBlock.NORTH,true).with(FenceBlock.EAST,true).with(FenceBlock.SOUTH,true).with(FenceBlock.WEST,true), 3);
+            world.setBlockState(branchPos, Blocks.SPRUCE_LEAVES.getDefaultState().with(LeavesBlock.DISTANCE,1), 3);
 //            if(false)
 //                world.setBlockState(branchPos, Blocks.STRIPPED_SPRUCE_LOG.getDefaultState().with(PillarBlock.AXIS, getAxisFromVector(direction)), 3);
 //            else
@@ -81,15 +82,10 @@ public class Spruce2 {
 
 
 
-    public static boolean generate(FeatureContext<DefaultFeatureConfig> context){
+    public static boolean generate(FeatureContext<DefaultFeatureConfig> context, BlockPos center){
         StructureWorldAccess structureWorldAccess = context.getWorld();
-        BlockPos center = context.getOrigin();
         Random random = context.getRandom();
 
-
-        int j = structureWorldAccess.getChunk(new BlockPos(center.getX(),center.getY(),center.getZ())).getHeightmap(Heightmap.Type.MOTION_BLOCKING).get((32+center.getX()%16)%16, (32+center.getZ()%16)%16);
-
-        center = new BlockPos(center.getX(),j,center.getZ());
 
         int logheight = 10 + random.nextInt(4);
         int height = logheight + 3 + random.nextInt(3);

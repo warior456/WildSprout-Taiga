@@ -36,16 +36,19 @@ public class Trees extends Feature<DefaultFeatureConfig> {
 
         center = new BlockPos(center.getX(),j,center.getZ());
 
-        if (!structureWorldAccess.getBlockState(center.down()).getBlock().equals(Blocks.MOSS_BLOCK)) return false;
-
-
+        if (structureWorldAccess.getBlockState(center.down(2)).getBlock().equals(Blocks.MOSS_BLOCK) && structureWorldAccess.getBlockState(center.down()).getBlock().equals(Blocks.MOSS_CARPET)){
+            center = center.down(1);
+        }
+        else if (structureWorldAccess.getBlockState(center.down()).getBlock().equals(Blocks.MOSS_BLOCK)){
+        }
+        else return false;
 
 
         Random random = context.getRandom();
         if (random.nextBoolean()) {
-            return Spruce1.generate(context);
+            return Spruce1.generate(context, center);
         } else {
-            return Spruce2.generate(context);
+            return Spruce2.generate(context,center);
         }
     }
 }
