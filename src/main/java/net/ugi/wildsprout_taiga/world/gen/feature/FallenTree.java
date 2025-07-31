@@ -4,6 +4,7 @@ import com.mojang.serialization.Codec;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.PillarBlock;
 import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.random.Random;
@@ -14,10 +15,7 @@ import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
 import net.ugi.wildsprout_taiga.tags.ModTags;
 
-import java.util.ArrayList;
-import java.util.LinkedHashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 public class FallenTree extends Feature<DefaultFeatureConfig> {
 
@@ -35,6 +33,16 @@ public class FallenTree extends Feature<DefaultFeatureConfig> {
         Random random = context.getRandom();
         int featureSize = 7;
 
+        // populate heighmaps
+        ChunkPos centerchunk = structureWorldAccess.getChunk(blockPos).getPos();
+        for (int i = -1; i < 2; i++){
+            for(int k = -1; k < 2; k++){
+                //structureWorldAccess.getChunk(centerchunk.x + i, centerchunk.z + k, ChunkStatus.FEATURES, true).getHeightmap(Heightmap.Type.WORLD_SURFACE);
+                Heightmap.populateHeightmaps(structureWorldAccess.getChunk(centerchunk.x + i, centerchunk.z + k), EnumSet.of(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES));
+
+            }
+        }
+
 
 
 
@@ -51,7 +59,7 @@ public class FallenTree extends Feature<DefaultFeatureConfig> {
                 endPos.getY() - startPos.getY(),
                 endPos.getZ() - startPos.getZ()
         );
-        if(Math.abs(direction.getY()) > 4 || direction.length()<3|| Math.abs(Math.abs(direction.getX()) - Math.abs(direction.getZ())) < 2){
+        if(Math.abs(direction.getY()) > 4 || direction.length()<4|| Math.abs(Math.abs(direction.getX()) - Math.abs(direction.getZ())) < 2){
             return false;
         }
         if(!structureWorldAccess.getBlockState(startPos.down()).isIn(ModTags.Blocks.VALID_TAIGA_GENERATE_BLOCK) || !structureWorldAccess.getBlockState(endPos.down()).isIn(ModTags.Blocks.VALID_TAIGA_GENERATE_BLOCK)){
@@ -69,6 +77,10 @@ public class FallenTree extends Feature<DefaultFeatureConfig> {
                 return false;
             }
         }
+        if(placeList.size()<4){
+            return false;
+        }
+
         placeList.remove(1);
 
         for (BlockPos pos : placeList){
@@ -159,9 +171,9 @@ public class FallenTree extends Feature<DefaultFeatureConfig> {
         for(int i = 0 ; i < this.steps; i++) {
             double t = i/(double)(this.steps-1);// -1 so tah the last one is t = 1
             Vec3d vec = getDirectionPos(t, startPos);
-            int x = vec.x < 0 ? (int)(vec.x) - 1 : (int)(vec.x);
-            int y = vec.y < 0 ? (int)(vec.y) - 1 : (int)(vec.y) ;
-            int z = vec.z < 0 ? (int)(vec.z) - 1 : (int)(vec.z);
+            int x = (int)Math.round(vec.x);
+            int y = (int)Math.round(vec.y);
+            int z = (int)Math.round(vec.z);
             blockPosArray[i] = new BlockPos(x,y,z);
         }
         return checkDuplicate(blockPosArray);

@@ -50,10 +50,6 @@ public class Spruce1 {
             if (leavesRadius < 0) break;
         }
 
-        System.out.println(context.getWorld().getChunk(context.getOrigin()).getPos());
         return true;
     }
-
-
-
 }
