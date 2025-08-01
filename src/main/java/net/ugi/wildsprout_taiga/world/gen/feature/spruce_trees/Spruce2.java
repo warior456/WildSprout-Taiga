@@ -103,15 +103,15 @@ public class Spruce2 {
             if (i >= branchStartHeight) {
                 if ((i) % 2 == 0 || i >= logheight){
                     double branchSize = branchSizeStart - (double)(i-branchStartHeight)* (double)(branchSizeStart-2)/(logheight-branchStartHeight);
-                    if ((int) Math.round(branchSize) < 2){
+                    if (branchSize < 2){
                         int deg = random.nextInt(360);
                         branch(structureWorldAccess, random, pos, (int) Math.round(branchSize), deg);
                         continue;
                     }
-                    int amountOfBranches = (int)Math.round(branchSize) -1;
+                    int amountOfBranches = (int)Math.round(branchSize)+1;
                     int randomDegOffset = random.nextInt(360);
                     for (int k = 0; k < amountOfBranches; k++) {
-                        int deg = randomDegOffset + k * 360/ amountOfBranches + random.nextInt(60/amountOfBranches);
+                        int deg = randomDegOffset + k * 360/ amountOfBranches + random.nextInt(120/amountOfBranches);
                         branch(structureWorldAccess, random, pos, (int) Math.round(branchSize), deg);
                     }
                 }

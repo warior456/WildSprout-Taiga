@@ -1,9 +1,9 @@
 {
-  "feature": "wildsprout-taiga:moss_patch",
+  "feature": "wildsprout-taiga:snowy_rocks",
   "placement": [
     {
-      "type": "minecraft:count",
-      "count": 32
+      "type": "minecraft:rarity_filter",
+      "chance": 1
     },
     {
       "type": "minecraft:in_square"

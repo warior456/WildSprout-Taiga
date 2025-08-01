@@ -22,9 +22,9 @@ import java.util.List;
 
 import static net.minecraft.block.SnowBlock.LAYERS;
 
-public class Rocks extends Feature<DefaultFeatureConfig> {
+public class MossyRocks extends Feature<DefaultFeatureConfig> {
 
-    public Rocks(Codec<DefaultFeatureConfig> configCodec) {
+    public MossyRocks(Codec<DefaultFeatureConfig> configCodec) {
         super(configCodec);
     }
 

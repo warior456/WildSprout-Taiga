@@ -35,3 +35,6 @@ public class WildSproutTaiga implements ModInitializer {
 		ModWorldGeneration.generateModWorldGen();
 	}
 }
+
+// todo: rework random path to not go trough rock / trees ( and in plains too)
+// todo: rework random path to not have moss on it

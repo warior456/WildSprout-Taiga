@@ -27,7 +27,7 @@ public class MossPatch extends Feature<DefaultFeatureConfig> {
         BlockPos blockPos = context.getOrigin();
         StructureWorldAccess structureWorldAccess = context.getWorld();
         Random random = context.getRandom();
-        int featureSize = 5;
+        int featureSize = 7;
 
         ChunkRandom chunkRandom = new ChunkRandom(new CheckedRandom(structureWorldAccess.getSeed()+1));
         DoublePerlinNoiseSampler dirtPatchesNoise = DoublePerlinNoiseSampler.create(chunkRandom, -5, new double[]{1});

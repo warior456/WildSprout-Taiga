@@ -16,22 +16,22 @@ import net.ugi.wildsprout_taiga.WildSproutTaiga;
 public class ModConfiguredFeatures {
     //-------------------------
     public static final RegistryKey<ConfiguredFeature<?,?>> BOULDERS_KEY = registerKey("boulders");
-    public static final RegistryKey<ConfiguredFeature<?,?>> ROCKS_KEY = registerKey("rocks");
-    public static final RegistryKey<ConfiguredFeature<?,?>> WHEAT_PATCH_KEY = registerKey("wheat_patch");
-
+    public static final RegistryKey<ConfiguredFeature<?,?>> MOSSY_ROCKS_KEY = registerKey("mossy_rocks");
+    public static final RegistryKey<ConfiguredFeature<?,?>> SNOWY_ROCKS_KEY = registerKey("snowy_rocks");
     public static final RegistryKey<ConfiguredFeature<?,?>> MOSS_KEY = registerKey("moss");
     public static final RegistryKey<ConfiguredFeature<?,?>> MOSS_PATCH_KEY = registerKey("moss_patch");
-    public static final RegistryKey<ConfiguredFeature<?,?>> RANDOM_PATH_KEY = registerKey("random_path");
     public static final RegistryKey<ConfiguredFeature<?,?>> BERRY_PATCH_KEY = registerKey("berry_patch");
     public static final RegistryKey<ConfiguredFeature<?,?>> FLUFFY_SNOW_KEY = registerKey("fluffy_snow");
     public static final RegistryKey<ConfiguredFeature<?,?>> FALLEN_TREE_KEY = registerKey("fallen_tree");
     public static final RegistryKey<ConfiguredFeature<?,?>> TREES_KEY = registerKey("trees");
+    public static final RegistryKey<ConfiguredFeature<?,?>> RANDOM_PATH_KEY = registerKey("random_path");
 
     public static void bootstrap(Registerable<ConfiguredFeature<?, ?>> context) {
 
         //-------------------------
         register(context,BOULDERS_KEY, ModFeatures.BOULDERS, new DefaultFeatureConfig());
-        register(context,ROCKS_KEY, ModFeatures.ROCKS, new DefaultFeatureConfig());
+        register(context,MOSSY_ROCKS_KEY, ModFeatures.MOSSY_ROCKS, new DefaultFeatureConfig());
+        register(context,SNOWY_ROCKS_KEY, ModFeatures.SNOWY_ROCKS, new DefaultFeatureConfig());
         register(context, FLUFFY_SNOW_KEY, ModFeatures.FLUFFY_SNOW, new DefaultFeatureConfig());
         register(context,MOSS_KEY, ModFeatures.MOSS, new DefaultFeatureConfig());
         register(context,MOSS_PATCH_KEY, ModFeatures.MOSS_PATCH, new DefaultFeatureConfig());
@@ -40,6 +40,7 @@ public class ModConfiguredFeatures {
                 new SimpleBlockFeatureConfig(BlockStateProvider.of(Blocks.SWEET_BERRY_BUSH.getDefaultState().with(SweetBerryBushBlock.AGE,3))),
                 BlockPredicate.allOf(new BlockPredicate[]{BlockPredicate.matchingBlocks(Direction.DOWN.getVector(), new Block[]{Blocks.GRASS_BLOCK, Blocks.MOSS_BLOCK})}))));
         register(context,TREES_KEY, ModFeatures.TREES, new DefaultFeatureConfig());
+        register(context,RANDOM_PATH_KEY, ModFeatures.RANDOM_PATH, new DefaultFeatureConfig());
 
 
     }

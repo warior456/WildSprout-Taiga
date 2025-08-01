@@ -1,9 +1,9 @@
 {
-  "feature": "wildsprout-taiga:rocks",
+  "feature": "wildsprout-taiga:random_path",
   "placement": [
     {
       "type": "minecraft:rarity_filter",
-      "chance": 1
+      "chance": 60
     },
     {
       "type": "minecraft:in_square"
