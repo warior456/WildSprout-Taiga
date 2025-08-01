@@ -18,9 +18,22 @@ import java.util.List;
 public class ModWorldGeneration {
     public static void generateModWorldGen() {
         List<RegistryKey<Biome>> allEnabled = new ArrayList<>();
-        List<RegistryKey<Biome>> snowyIfEnabled = new ArrayList<>();
-        List<RegistryKey<Biome>> normalIfEnabled = new ArrayList<>();
+        List<RegistryKey<Biome>> taigaIfEnabled = new ArrayList<>();
+        List<RegistryKey<Biome>> snowyTaigaIfEnabled = new ArrayList<>();
+        List<RegistryKey<Biome>> allTaigaEnabled = new ArrayList<>();
+        List<RegistryKey<Biome>> oldGrowthEnabled = new ArrayList<>();
 
+        if(WildSproutTaiga.CONFIG.TaigaEnabled){
+            taigaIfEnabled.add(BiomeKeys.TAIGA);
+            allTaigaEnabled.add(BiomeKeys.TAIGA);
+            allEnabled.add(BiomeKeys.TAIGA);
+        }
+
+        if(WildSproutTaiga.CONFIG.SnowyTaigaEnabled){
+            snowyTaigaIfEnabled.add(BiomeKeys.SNOWY_TAIGA);
+            allTaigaEnabled.add(BiomeKeys.SNOWY_TAIGA);
+            allEnabled.add(BiomeKeys.SNOWY_TAIGA);
+        }
 
 
 
@@ -30,7 +43,7 @@ public class ModWorldGeneration {
         //LOCAL MODIFICATIONS
 
         //BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.TAIGA), GenerationStep.Feature.LOCAL_MODIFICATIONS, ModPlacedFeatures.BOULDERS_PLACED_KEY);
-        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.TAIGA, BiomeKeys.SNOWY_TAIGA), GenerationStep.Feature.LOCAL_MODIFICATIONS, ModPlacedFeatures.ROCKS_PLACED_KEY);
+        BiomeModifications.addFeature(BiomeSelectors.includeByKey(allTaigaEnabled), GenerationStep.Feature.LOCAL_MODIFICATIONS, ModPlacedFeatures.ROCKS_PLACED_KEY);
 
 
         //UNDERGOUNDS STRUCTURES
@@ -48,9 +61,9 @@ public class ModWorldGeneration {
         //FLUID SPRINGS
 
         //VEGETAL DECORATION
-        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.TAIGA, BiomeKeys.SNOWY_TAIGA), GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.TREES_PLACED_KEY);
+        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.TAIGA, BiomeKeys.SNOWY_TAIGA), GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.TREES_PLACED_KEY);//allenabled
 
-        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.TAIGA, BiomeKeys.SNOWY_TAIGA), GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.FALLEN_TREE_PLACED_KEY);
+        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.TAIGA, BiomeKeys.SNOWY_TAIGA), GenerationStep.Feature.VEGETAL_DECORATION, ModPlacedFeatures.FALLEN_TREE_PLACED_KEY);//allenabled
 
         //TOP LAYER MODIFICATION
         BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.SNOWY_TAIGA), GenerationStep.Feature.TOP_LAYER_MODIFICATION, ModPlacedFeatures.FLUFFY_SNOW_PLACED_KEY);

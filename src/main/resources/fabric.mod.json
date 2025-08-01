@@ -5,13 +5,14 @@
 	"name": "WildSprout: Taiga",
 	"description": "This is an example description! Tell everyone what your mod is about!",
 	"authors": [
-		"Me!"
+		"Matteo_fey (warior456)",
+		"gems_bond"
 	],
 	"contact": {
-		"homepage": "https://fabricmc.net/",
-		"sources": "https://github.com/FabricMC/fabric-example-mod"
+		"homepage": "https://github.com/warior456/WildSprout-Taiga/issues",
+		"sources": "https://github.com/warior456/WildSprout-Taiga"
 	},
-	"license": "CC0-1.0",
+	"license": "WildSprout License V2",
 	"icon": "assets/wildsprout-taiga/icon.png",
 	"environment": "*",
 	"entrypoints": {
