@@ -30,7 +30,7 @@ public class Moss extends Feature<DefaultFeatureConfig> {
         int featureSize = 7;
 
         ChunkRandom chunkRandom = new ChunkRandom(new CheckedRandom(structureWorldAccess.getSeed()+1));
-        DoublePerlinNoiseSampler dirtPatchesNoise = DoublePerlinNoiseSampler.create(chunkRandom, -5, new double[]{1});
+        DoublePerlinNoiseSampler mossNoise = DoublePerlinNoiseSampler.create(chunkRandom, -5, new double[]{1});
 
         int x = blockPos.getX();
         int y = blockPos.getY() - 1;
@@ -43,7 +43,7 @@ public class Moss extends Feature<DefaultFeatureConfig> {
 
                 if (!(structureWorldAccess.getBlockState(pos).isIn(ModTags.Blocks.CAN_BE_REPLACED_SOLID))) continue;
 
-                double noiseSample = dirtPatchesNoise.sample(pos.getX(), pos.getY(), pos.getZ());
+                double noiseSample = mossNoise.sample(pos.getX(), pos.getY(), pos.getZ());
                 if (!(random.nextDouble() < noiseSample*10 -2)){
                     this.setBlockState(structureWorldAccess, pos, Blocks.MOSS_BLOCK.getDefaultState());
 

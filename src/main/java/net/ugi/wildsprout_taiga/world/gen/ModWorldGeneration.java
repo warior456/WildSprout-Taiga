@@ -43,7 +43,8 @@ public class ModWorldGeneration {
         //LOCAL MODIFICATIONS
 
         //BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.TAIGA), GenerationStep.Feature.LOCAL_MODIFICATIONS, ModPlacedFeatures.BOULDERS_PLACED_KEY);
-        BiomeModifications.addFeature(BiomeSelectors.includeByKey(allTaigaEnabled), GenerationStep.Feature.LOCAL_MODIFICATIONS, ModPlacedFeatures.MOSSY_ROCKS_PLACED_KEY);
+        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.TAIGA), GenerationStep.Feature.LOCAL_MODIFICATIONS, ModPlacedFeatures.MOSSY_ROCKS_PLACED_KEY);
+        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.SNOWY_TAIGA), GenerationStep.Feature.LOCAL_MODIFICATIONS, ModPlacedFeatures.SNOWY_ROCKS_PLACED_KEY);
 
 
         //UNDERGOUNDS STRUCTURES
@@ -74,7 +75,7 @@ public class ModWorldGeneration {
         //MODIFY FEATURES
         BiomeModifications.create(WildSproutTaiga.identifier("large_berry_bush_patch"))
                 .add(ModificationPhase.REPLACEMENTS,
-                        BiomeSelectors.includeByKey(BiomeKeys.TAIGA),
+                        BiomeSelectors.includeByKey(BiomeKeys.TAIGA, BiomeKeys.SNOWY_TAIGA),
                         context -> {
                             // Identify the original feature to replace.
                             context.getGenerationSettings().removeFeature(
@@ -109,36 +110,30 @@ public class ModWorldGeneration {
 
 
         // REMOVE FEATURES
-        BiomeModifications.create(WildSproutTaiga.identifier("no_lava_spring")).add( ModificationPhase.REMOVALS,BiomeSelectors.includeByKey(BiomeKeys.TAIGA),
+        BiomeModifications.create(WildSproutTaiga.identifier("no_lava_spring")).add( ModificationPhase.REMOVALS,BiomeSelectors.includeByKey(BiomeKeys.TAIGA, BiomeKeys.SNOWY_TAIGA),
                 context -> {
                     context.getGenerationSettings().removeFeature(
                             GenerationStep.Feature.FLUID_SPRINGS, MiscPlacedFeatures.SPRING_LAVA);});
 
-        BiomeModifications.create(WildSproutTaiga.identifier("no_lava_lake_surface")).add( ModificationPhase.REMOVALS,BiomeSelectors.includeByKey(BiomeKeys.TAIGA),
+        BiomeModifications.create(WildSproutTaiga.identifier("no_lava_lake_surface")).add( ModificationPhase.REMOVALS,BiomeSelectors.includeByKey(BiomeKeys.TAIGA, BiomeKeys.SNOWY_TAIGA),
                 context -> {
                     context.getGenerationSettings().removeFeature(
                             GenerationStep.Feature.LAKES, MiscPlacedFeatures.LAKE_LAVA_SURFACE);});
 
-        BiomeModifications.create(WildSproutTaiga.identifier("no_lava_lake_underground")).add( ModificationPhase.REMOVALS,BiomeSelectors.includeByKey(BiomeKeys.TAIGA),
+        BiomeModifications.create(WildSproutTaiga.identifier("no_lava_lake_underground")).add( ModificationPhase.REMOVALS,BiomeSelectors.includeByKey(BiomeKeys.TAIGA, BiomeKeys.SNOWY_TAIGA),
                 context -> {
                     context.getGenerationSettings().removeFeature(
                             GenerationStep.Feature.LAKES, MiscPlacedFeatures.LAKE_LAVA_UNDERGROUND);});
 
-        BiomeModifications.create(WildSproutTaiga.identifier("no_flowers")).add( ModificationPhase.REMOVALS,BiomeSelectors.includeByKey(BiomeKeys.TAIGA),
+        BiomeModifications.create(WildSproutTaiga.identifier("no_flowers")).add( ModificationPhase.REMOVALS,BiomeSelectors.includeByKey(BiomeKeys.TAIGA, BiomeKeys.SNOWY_TAIGA),
                 context -> {
                     context.getGenerationSettings().removeFeature(
                             GenerationStep.Feature.VEGETAL_DECORATION, VegetationPlacedFeatures.FLOWER_DEFAULT);});
 
-        BiomeModifications.create(WildSproutTaiga.identifier("no_pumpkins")).add( ModificationPhase.REMOVALS,BiomeSelectors.includeByKey(BiomeKeys.TAIGA),
+        BiomeModifications.create(WildSproutTaiga.identifier("no_pumpkins")).add( ModificationPhase.REMOVALS,BiomeSelectors.includeByKey(BiomeKeys.TAIGA, BiomeKeys.SNOWY_TAIGA),
                 context -> {
                     context.getGenerationSettings().removeFeature(
                             GenerationStep.Feature.VEGETAL_DECORATION, VegetationPlacedFeatures.PATCH_PUMPKIN);});
-//
-//        BiomeModifications.create(WildSproutTaiga.identifier("no_old_trees")).add( ModificationPhase.REMOVALS,BiomeSelectors.includeByKey(BiomeKeys.TAIGA),
-//                context -> {
-//                    context.getGenerationSettings().removeFeature(
-//                            GenerationStep.Feature.VEGETAL_DECORATION, VegetationPlacedFeatures.TREES_TAIGA);});
-
 
     }
 }

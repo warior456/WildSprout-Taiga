@@ -7,15 +7,22 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
+import net.minecraft.util.math.noise.DoublePerlinNoiseSampler;
+import net.minecraft.util.math.random.CheckedRandom;
+import net.minecraft.util.math.random.ChunkRandom;
 import net.minecraft.util.math.random.Random;
 import net.minecraft.world.Heightmap;
 import net.minecraft.world.StructureWorldAccess;
+import net.minecraft.world.biome.Biome;
+import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
 import net.ugi.wildsprout_taiga.tags.ModTags;
 
 import java.util.*;
+
+import static net.minecraft.block.SnowBlock.LAYERS;
 
 public class FallenTree extends Feature<DefaultFeatureConfig> {
 
@@ -42,6 +49,8 @@ public class FallenTree extends Feature<DefaultFeatureConfig> {
 
             }
         }
+
+        ChunkRandom chunkRandom = new ChunkRandom(new CheckedRandom(structureWorldAccess.getSeed()));
 
 
 
@@ -89,22 +98,27 @@ public class FallenTree extends Feature<DefaultFeatureConfig> {
             //top decoration
             if(structureWorldAccess.getBlockState(pos.up()).isIn(ModTags.Blocks.CAN_BE_REPLACED_ALL)) {
 
+                if ( structureWorldAccess.getBiome(blockPos).getIdAsString().equals(BiomeKeys.SNOWY_TAIGA.getValue().toString())){
+                    DoublePerlinNoiseSampler snowNoise = DoublePerlinNoiseSampler.create(chunkRandom, -4, new double[]{1});
+                    int snowlayers = (int)Math.round(Math.clamp(snowNoise.sample(pos.getX(), pos.getY(), pos.getZ())+0.5,0,2)*3) + random.nextInt(2)+1;
+                    this.setBlockState(structureWorldAccess, pos.up(), Blocks.SNOW.getDefaultState().with(LAYERS, snowlayers));
 
+                } else {
 
-                if(random.nextDouble()<0.7) {//decorate with moss
-                    if(structureWorldAccess.getBlockState(pos.up()).isIn(ModTags.Blocks.CAN_BE_REPLACED_NON_SOLID)){
-                        structureWorldAccess.setBlockState(pos.up(), Blocks.MOSS_CARPET.getDefaultState(), 2);
-                    }
+                    if(random.nextDouble()<0.7) {//decorate with moss
+                        if(structureWorldAccess.getBlockState(pos.up()).isIn(ModTags.Blocks.CAN_BE_REPLACED_NON_SOLID)){
+                            structureWorldAccess.setBlockState(pos.up(), Blocks.MOSS_CARPET.getDefaultState(), 2);
+                        }
 
-                    if(structureWorldAccess.getBlockState(pos.down()).isIn(ModTags.Blocks.VALID_TAIGA_GENERATE_BLOCK)) {
-                        if (random.nextDouble() < 0.15) {
-                            structureWorldAccess.setBlockState(pos, Blocks.MOSS_BLOCK.getDefaultState(), 2);
+                        if(structureWorldAccess.getBlockState(pos.down()).isIn(ModTags.Blocks.VALID_TAIGA_GENERATE_BLOCK)) {
+                            if (random.nextDouble() < 0.15) {
+                                structureWorldAccess.setBlockState(pos, Blocks.MOSS_BLOCK.getDefaultState(), 2);
+                            }
                         }
                     }
-                }
-
-                if (random.nextDouble() < 0.15) {//decorate with mushrooms
-                    setMushRoomOn(pos, structureWorldAccess, random);
+                    if (random.nextDouble() < 0.15) {//decorate with mushrooms
+                        setMushRoomOn(pos, structureWorldAccess, random);
+                    }
                 }
 
 
@@ -115,7 +129,9 @@ public class FallenTree extends Feature<DefaultFeatureConfig> {
                         if (structureWorldAccess.getBlockState(pos.down().north()).isIn(ModTags.Blocks.CAN_BE_REPLACED_SOLID)) {
                             structureWorldAccess.setBlockState(pos.down().north(), Blocks.PODZOL.getDefaultState(), 2);
                             if (random.nextDouble() < 0.3) {
-                                setMushRoomOn(pos.down().north(), structureWorldAccess, random);
+                                if ( !structureWorldAccess.getBiome(blockPos).getIdAsString().equals(BiomeKeys.SNOWY_TAIGA.getValue().toString())){
+                                    setMushRoomOn(pos.down().north(), structureWorldAccess, random);
+                                }
                             }
                         }
                     }
@@ -123,7 +139,9 @@ public class FallenTree extends Feature<DefaultFeatureConfig> {
                         if(structureWorldAccess.getBlockState(pos.down().south()).isIn(ModTags.Blocks.CAN_BE_REPLACED_SOLID)) {
                             structureWorldAccess.setBlockState(pos.down().south(), Blocks.PODZOL.getDefaultState(), 2);
                             if( random.nextDouble() < 0.3) {
-                                setMushRoomOn(pos.down().south(), structureWorldAccess, random);
+                                if ( !structureWorldAccess.getBiome(blockPos).getIdAsString().equals(BiomeKeys.SNOWY_TAIGA.getValue().toString())){
+                                    setMushRoomOn(pos.down().north(), structureWorldAccess, random);
+                                }
                             }
                         }
                     }
@@ -131,7 +149,9 @@ public class FallenTree extends Feature<DefaultFeatureConfig> {
                         if(structureWorldAccess.getBlockState(pos.down().east()).isIn(ModTags.Blocks.CAN_BE_REPLACED_SOLID)) {
                             structureWorldAccess.setBlockState(pos.down().east(), Blocks.PODZOL.getDefaultState(), 2);
                             if( random.nextDouble() < 0.3) {
-                                setMushRoomOn(pos.down().east(), structureWorldAccess, random);
+                                if ( !structureWorldAccess.getBiome(blockPos).getIdAsString().equals(BiomeKeys.SNOWY_TAIGA.getValue().toString())){
+                                    setMushRoomOn(pos.down().north(), structureWorldAccess, random);
+                                }
                             }
                         }
                     }
@@ -139,7 +159,9 @@ public class FallenTree extends Feature<DefaultFeatureConfig> {
                         if (structureWorldAccess.getBlockState(pos.down().west()).isIn(ModTags.Blocks.CAN_BE_REPLACED_SOLID)) {
                             structureWorldAccess.setBlockState(pos.down().west(), Blocks.PODZOL.getDefaultState(), 2);
                             if( random.nextDouble() < 0.3) {
-                                setMushRoomOn(pos.down().west(), structureWorldAccess, random);
+                                if ( !structureWorldAccess.getBiome(blockPos).getIdAsString().equals(BiomeKeys.SNOWY_TAIGA.getValue().toString())){
+                                    setMushRoomOn(pos.down().north(), structureWorldAccess, random);
+                                }
                             }
                         }
                     }

@@ -35,83 +35,10 @@ public class SnowyRocks extends Feature<DefaultFeatureConfig> {
 
     }
 
-    private List<BlockPos> getmossCarpetPos(List<BlockPos> fullBlockPos, List<BlockPos> slabBlockPos) {
-        List<BlockPos> fullBlock2D = new ArrayList<>();
-        for (BlockPos pos : fullBlockPos) {
-            if (fullBlock2D.stream().noneMatch(p -> p.getX() == pos.getX() && p.getZ() == pos.getZ())) {
-                fullBlock2D.add(new BlockPos(pos.getX(), pos.getY(), pos.getZ()));
-            }
-        }
-
-        List<BlockPos> slabBlocks2D = new ArrayList<>();
-        for (BlockPos pos : slabBlockPos) {
-            if (slabBlocks2D.stream().noneMatch(p -> p.getX() == pos.getX() && p.getZ() == pos.getZ())) {
-                slabBlocks2D.add(new BlockPos(pos.getX(), pos.getY(), pos.getZ()));
-            }
-        }
-        fullBlock2D.removeAll(slabBlocks2D);
-        return fullBlock2D;
-    }
-
-    protected boolean canPlaceMossAt(StructureWorldAccess world, BlockPos pos) {
-        BlockState blockState = world.getBlockState(pos.down());
-        return Block.isFaceFullSquare(blockState.getCollisionShape(world, pos.down()), Direction.UP) || blockState.isOf(Blocks.SNOW) && (Integer)blockState.get(LAYERS) == 8;
-    }
-
-    private void mossBlock(List<BlockPos> allBlocksPos, List<BlockPos> fullBlocksPos, List<BlockPos> slabBlocksPos, StructureWorldAccess structureWorldAccess, BlockPos pos) {
-        if (!allBlocksPos.contains(pos)) return;
-        if (fullBlocksPos.contains(pos)) {
-            this.setBlockState(structureWorldAccess, pos, Blocks.MOSS_BLOCK.getDefaultState());
-        }
-        allBlocksPos.remove(pos);
-        fullBlocksPos.remove(pos);
-        slabBlocksPos.remove(pos);
-
-        this.mossyCobbleBlock(allBlocksPos,  fullBlocksPos,  slabBlocksPos, structureWorldAccess, pos.up());
-        this.mossyCobbleBlock(allBlocksPos,  fullBlocksPos,  slabBlocksPos, structureWorldAccess, pos.down());
-        this.mossyCobbleBlock(allBlocksPos,  fullBlocksPos,  slabBlocksPos, structureWorldAccess, pos.north());
-        this.mossyCobbleBlock(allBlocksPos,  fullBlocksPos,  slabBlocksPos, structureWorldAccess, pos.south());
-        this.mossyCobbleBlock(allBlocksPos,  fullBlocksPos,  slabBlocksPos, structureWorldAccess, pos.east());
-        this.mossyCobbleBlock(allBlocksPos,  fullBlocksPos,  slabBlocksPos, structureWorldAccess, pos.west());
-    }
-
-    private void mossyCobbleBlock(List<BlockPos> allBlocksPos, List<BlockPos> fullBlocksPos, List<BlockPos> slabBlocksPos, StructureWorldAccess structureWorldAccess, BlockPos pos) {
-        if (!allBlocksPos.contains(pos)) return;
-        if (fullBlocksPos.contains(pos)) {
-            this.setBlockState(structureWorldAccess, pos, Blocks.MOSSY_COBBLESTONE.getDefaultState());
-        }
-        else if (slabBlocksPos.contains(pos)) {
-            this.setBlockState(structureWorldAccess, pos, Blocks.MOSSY_COBBLESTONE_SLAB.getDefaultState());
-        }
-        allBlocksPos.remove(pos);
-        fullBlocksPos.remove(pos);
-        slabBlocksPos.remove(pos);
-
-        this.tuffBlock(allBlocksPos,  fullBlocksPos,  slabBlocksPos, structureWorldAccess, pos.up());
-        this.tuffBlock(allBlocksPos,  fullBlocksPos,  slabBlocksPos, structureWorldAccess, pos.down());
-        this.tuffBlock(allBlocksPos,  fullBlocksPos,  slabBlocksPos, structureWorldAccess, pos.north());
-        this.tuffBlock(allBlocksPos,  fullBlocksPos,  slabBlocksPos, structureWorldAccess, pos.south());
-        this.tuffBlock(allBlocksPos,  fullBlocksPos,  slabBlocksPos, structureWorldAccess, pos.east());
-        this.tuffBlock(allBlocksPos,  fullBlocksPos,  slabBlocksPos, structureWorldAccess, pos.west());
-
-    }
-
-    private void tuffBlock(List<BlockPos> allBlocksPos, List<BlockPos> fullBlocksPos, List<BlockPos> slabBlocksPos, StructureWorldAccess structureWorldAccess, BlockPos pos) {
-        if (fullBlocksPos.contains(pos)) {
-            this.setBlockState(structureWorldAccess, pos, Blocks.TUFF.getDefaultState());
-        }
-        else if (slabBlocksPos.contains(pos)) {
-            this.setBlockState(structureWorldAccess, pos, Blocks.TUFF_SLAB.getDefaultState());
-        }
-        allBlocksPos.remove(pos);
-        fullBlocksPos.remove(pos);
-        slabBlocksPos.remove(pos);
-
-    }
-
     public void generateRock(StructureWorldAccess structureWorldAccess, Random random, BlockPos center, BlockState block, BlockState slab){
         ChunkRandom chunkRandom = new ChunkRandom(new CheckedRandom(structureWorldAccess.getSeed()));
         DoublePerlinNoiseSampler noise = DoublePerlinNoiseSampler.create(chunkRandom, -2, new double[]{1});
+        DoublePerlinNoiseSampler snowNoise = DoublePerlinNoiseSampler.create(chunkRandom, -4, new double[]{1});
 
         double radius = biased_random_linear(random, 0.5, 2);
 
@@ -146,43 +73,7 @@ public class SnowyRocks extends Feature<DefaultFeatureConfig> {
         List<BlockPos> allBlocksPos = new ArrayList<>(slabBlocksPos);
         allBlocksPos.addAll(fullBlocksPos);
 
-        List<BlockPos> mossCarpetPos = this.getmossCarpetPos(fullBlocksPos, slabBlocksPos);
-        List<BlockPos> allBlocksPosCopyForMoss = new ArrayList<>(allBlocksPos);
-
-        int rockSize = allBlocksPos.size();
-
-        if (rockSize > 6 &&  rockSize < 15) {
-            int i = 0;
-            int amount = random.nextInt(2) + 1;
-            List<BlockPos> allBlocksPosCopy = new ArrayList<>(allBlocksPos);
-            while (i < amount && !allBlocksPosCopy.isEmpty()) {
-                BlockPos randomPos = allBlocksPosCopy.get(random.nextInt(allBlocksPosCopy.size()));
-                if (randomPos.getY() >= center.getY()) {
-                    this.mossyCobbleBlock(allBlocksPos, fullBlocksPos, slabBlocksPos, structureWorldAccess, randomPos);
-                    i++;
-                }
-//                else {
-//                    this.tuffBlock(allBlocksPos, fullBlocksPos, slabBlocksPos, structureWorldAccess, randomPos);
-//                }
-                allBlocksPosCopy.remove(randomPos);
-            }
-        }
-        else {
-            int i = 0;
-            int amount = random.nextInt(2) + 2;
-            List<BlockPos> fullBlocksPosCopy = new ArrayList<>(fullBlocksPos);
-            while (i < amount && !fullBlocksPosCopy.isEmpty()) {
-                BlockPos randomPos = fullBlocksPosCopy.get(random.nextInt(fullBlocksPosCopy.size()));
-                if (randomPos.getY() > center.getY()) {
-                    this.mossBlock(allBlocksPos, fullBlocksPos, slabBlocksPos, structureWorldAccess, randomPos);
-                    i++;
-                }
-//                else {
-//                    this.tuffBlock(allBlocksPos, fullBlocksPos, slabBlocksPos, structureWorldAccess, randomPos);
-//                }
-                fullBlocksPosCopy.remove(randomPos);
-            }
-        }
+        List<BlockPos> allBlocksPosCopyForSnow = new ArrayList<>(allBlocksPos);
 
 
         for (BlockPos pos : fullBlocksPos) {
@@ -193,15 +84,34 @@ public class SnowyRocks extends Feature<DefaultFeatureConfig> {
             this.setBlockState(structureWorldAccess,pos, slab);
         }
 
+        List<BlockPos> allBlock2D = new ArrayList<>();
+        for (BlockPos pos : allBlocksPos) {
+            if (allBlock2D.stream().noneMatch(p -> p.getX() == pos.getX() && p.getZ() == pos.getZ())) {
+                allBlock2D.add(new BlockPos(pos.getX(), pos.getY(), pos.getZ()));
+            }
+        }
 
 
-        for (BlockPos pos : mossCarpetPos) {
-            if (random.nextDouble() > 0.7) continue;
-            while(allBlocksPosCopyForMoss.contains(pos)) {
+
+        for (BlockPos pos : allBlock2D) {
+            while(allBlocksPosCopyForSnow.contains(pos)) {
                 pos = pos.up();
             }
-            if (!this.canPlaceMossAt(structureWorldAccess, pos)) continue;
-            this.setBlockState(structureWorldAccess, pos, Blocks.MOSS_CARPET.getDefaultState());
+            if (pos.getY() != structureWorldAccess.getTopY(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES,pos.getX(),pos.getZ())) continue;
+
+            int snowlayers = (int)Math.round(Math.clamp(snowNoise.sample(pos.getX(), pos.getY(), pos.getZ())+0.5,0,2)*3) + random.nextInt(2)+1;
+            if (structureWorldAccess.getBlockState(pos).equals(slab))
+                snowlayers += 4;
+            if (snowlayers > 8){
+                this.setBlockState(structureWorldAccess,pos.down(), Blocks.SNOW_BLOCK.getDefaultState());
+                this.setBlockState(structureWorldAccess, pos, Blocks.SNOW.getDefaultState().with(LAYERS, snowlayers-8));
+            }
+            else if (snowlayers == 8){
+                this.setBlockState(structureWorldAccess,pos.down(), Blocks.SNOW_BLOCK.getDefaultState());
+            }
+            else{
+                this.setBlockState(structureWorldAccess, pos.down(), Blocks.SNOW.getDefaultState().with(LAYERS, snowlayers));
+            }
         }
 
 
@@ -226,13 +136,11 @@ public class SnowyRocks extends Feature<DefaultFeatureConfig> {
         possibleBlocks.add(Blocks.STONE.getDefaultState());
         possibleBlocks.add(Blocks.TUFF.getDefaultState());
         possibleBlocks.add(Blocks.COBBLESTONE.getDefaultState());
-        possibleBlocks.add(Blocks.MOSSY_COBBLESTONE.getDefaultState());
 
         List<BlockState> possibleSlabs = new ArrayList<>();
         possibleSlabs.add(Blocks.STONE_SLAB.getDefaultState());
         possibleSlabs.add(Blocks.TUFF_SLAB.getDefaultState());
         possibleSlabs.add(Blocks.COBBLESTONE_SLAB.getDefaultState());
-        possibleSlabs.add(Blocks.MOSSY_COBBLESTONE_SLAB.getDefaultState());
 
         int r = random.nextInt(possibleBlocks.size());
 

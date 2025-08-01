@@ -39,12 +39,18 @@ public class Trees extends Feature<DefaultFeatureConfig> {
         if (structureWorldAccess.getBlockState(center.down(2)).getBlock().equals(Blocks.MOSS_BLOCK) && structureWorldAccess.getBlockState(center.down()).getBlock().equals(Blocks.MOSS_CARPET)){
             center = center.down(1);
         }
-        else if (structureWorldAccess.getBlockState(center.down()).getBlock().equals(Blocks.MOSS_BLOCK)){
-        }
-        else return false;
-
 
         Random random = context.getRandom();
+
+        ChunkRandom chunkRandom = new ChunkRandom(new CheckedRandom(structureWorldAccess.getSeed()+1));
+        DoublePerlinNoiseSampler mossNoise = DoublePerlinNoiseSampler.create(chunkRandom, -5, new double[]{1});
+
+        double noiseSample = mossNoise.sample(center.getX(), center.getY(), center.getZ());
+        if (0.5 < noiseSample*10 -2) return false;
+
+        if(!structureWorldAccess.getBlockState(center.down()).isIn(ModTags.Blocks.VALID_TAIGA_GENERATE_BLOCK)) return false;
+
+
         if (random.nextBoolean()) {
             return Spruce1.generate(context, center);
         } else {
