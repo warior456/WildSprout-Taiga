@@ -28,7 +28,6 @@ public class WildSproutTaiga implements ModInitializer {
 		// However, some things (like resources) may still be uninitialized.
 		// Proceed with mild caution.
 
-		LOGGER.info("Hello Fabric world!");
 		WildSproutTaiga.LOGGER.info("Loading Config for " + MOD_ID);
 		Config.loadConfig();
 		ModFeatures.init();
@@ -38,3 +37,10 @@ public class WildSproutTaiga implements ModInitializer {
 
 // todo: rework random path to not go trough rock / trees ( and in plains too)
 // todo: rework random path to not have moss on it
+// todo: less berrybushes (in moss code)
+// todo: maybe 3 chunk river?
+// todo: more types of tree
+// todo: delete mushrooms from snowy taiga
+// todo: maybe reduce snow under trees
+// todo: pine
+// todo: other big trees
