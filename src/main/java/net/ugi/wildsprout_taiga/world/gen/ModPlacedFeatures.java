@@ -1,5 +1,6 @@
 package net.ugi.wildsprout_taiga.world.gen;
 
+import net.minecraft.block.Blocks;
 import net.minecraft.registry.Registerable;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.registry.RegistryKeys;
@@ -11,6 +12,8 @@ import net.ugi.wildsprout_taiga.WildSproutTaiga;
 
 
 import java.util.List;
+
+import static net.minecraft.world.gen.feature.VegetationPlacedFeatures.treeModifiers;
 
 public class ModPlacedFeatures {
 
@@ -25,7 +28,10 @@ public class ModPlacedFeatures {
     public static final RegistryKey<PlacedFeature> TREES_PLACED_KEY = registerKey("trees");
     public static final RegistryKey<PlacedFeature> FALLEN_TREE_PLACED_KEY = registerKey("fallen_tree");
     public static final RegistryKey<PlacedFeature> ORIGINAL_TAIGA_TREES_PLACED_KEY = registerKey("original_taiga_trees");
+    public static final RegistryKey<PlacedFeature> REPLACED_OLD_GROWTH_SPRUCE_TREES_PLACED_KEY = registerKey("replaced_old_growth_spruce_trees");
     public static final RegistryKey<PlacedFeature> RANDOM_PATH_PLACED_KEY = registerKey("random_path");
+    public static final RegistryKey<PlacedFeature> NEW_MEGA_SPRUCE_PLACED_KEY = registerKey("new_mega_spruce");
+
 
 
     public static void bootstrap(Registerable<PlacedFeature> context) {
@@ -40,10 +46,12 @@ public class ModPlacedFeatures {
         register(context,FLUFFY_SNOW_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.FLUFFY_SNOW_KEY), CountPlacementModifier.of(32), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
         register(context,TREES_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.TREES_KEY), CountPlacementModifier.of(10), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
         register(context,FALLEN_TREE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.FALLEN_TREE_KEY), RarityFilterPlacementModifier.of(3), SquarePlacementModifier.of(), PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP, BiomePlacementModifier.of());
-        register(context, ORIGINAL_TAIGA_TREES_PLACED_KEY, configuredFeatures.getOrThrow(VegetationConfiguredFeatures.TREES_TAIGA), CountPlacementModifier.of(5), SquarePlacementModifier.of(), SurfaceWaterDepthFilterPlacementModifier.of(0), PlacedFeatures.OCEAN_FLOOR_HEIGHTMAP, BiomePlacementModifier.of());
+        register(context,ORIGINAL_TAIGA_TREES_PLACED_KEY, configuredFeatures.getOrThrow(VegetationConfiguredFeatures.TREES_TAIGA), CountPlacementModifier.of(5), SquarePlacementModifier.of(), SurfaceWaterDepthFilterPlacementModifier.of(0), PlacedFeatures.OCEAN_FLOOR_HEIGHTMAP, BiomePlacementModifier.of());
         register(context,RANDOM_PATH_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.RANDOM_PATH_KEY), RarityFilterPlacementModifier.of(60), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
+        register(context,REPLACED_OLD_GROWTH_SPRUCE_TREES_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.REPLACED_TREES_OLD_GROWTH_SPRUCE_TAIGA_KEY), treeModifiers(PlacedFeatures.createCountExtraModifier(10, 0.1F, 1)));
 
 
+        register(context,NEW_MEGA_SPRUCE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.NEW_MEGA_SPRUCE_KEY), PlacedFeatures.wouldSurvive(Blocks.SPRUCE_SAPLING));
     }
 
     public static RegistryKey<PlacedFeature> registerKey(String name) {

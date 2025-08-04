@@ -107,6 +107,22 @@ public class ModWorldGeneration {
                         }
                 );
 
+        BiomeModifications.create(WildSproutTaiga.identifier("replace_old_growth_spruce_trees"))
+                .add(ModificationPhase.REPLACEMENTS,
+                        BiomeSelectors.includeByKey(BiomeKeys.OLD_GROWTH_SPRUCE_TAIGA),
+                        context -> {
+                            context.getGenerationSettings().removeFeature(
+                                    GenerationStep.Feature.VEGETAL_DECORATION,
+                                    VegetationPlacedFeatures.TREES_OLD_GROWTH_SPRUCE_TAIGA
+                            );
+                            context.getGenerationSettings().addFeature(
+                                    GenerationStep.Feature.VEGETAL_DECORATION,
+                                    ModPlacedFeatures.REPLACED_OLD_GROWTH_SPRUCE_TREES_PLACED_KEY
+                            );
+                        });
+
+
+
 
 
         // REMOVE FEATURES

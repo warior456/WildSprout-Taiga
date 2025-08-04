@@ -27,6 +27,8 @@ public class ModFeatures {
     public static final Feature<DefaultFeatureConfig> MOSS = new Moss(DefaultFeatureConfig.CODEC);
     public static final Feature<DefaultFeatureConfig> MOSS_PATCH = new MossPatch(DefaultFeatureConfig.CODEC);
     public static final Feature<DefaultFeatureConfig> TREES = new Trees(DefaultFeatureConfig.CODEC);
+    public static final Feature<DefaultFeatureConfig> MEGA_SPRUCE_TREES = new MegaSpruceTrees(DefaultFeatureConfig.CODEC);
+    public static final Feature<DefaultFeatureConfig> MEGA_PINE_TREES = new MegaPineTrees(DefaultFeatureConfig.CODEC);
     public static final Feature<DefaultFeatureConfig> FALLEN_TREE = new FallenTree(DefaultFeatureConfig.CODEC);
     public static final Feature<DefaultFeatureConfig> RANDOM_PATH = new RandomPath(DefaultFeatureConfig.CODEC);
 
@@ -39,6 +41,8 @@ public class ModFeatures {
         Registry.register(Registries.FEATURE, WildSproutTaiga.identifier( "moss_patch"), MOSS_PATCH);
         Registry.register(Registries.FEATURE, WildSproutTaiga.identifier( "fallen_tree"), FALLEN_TREE);
         Registry.register(Registries.FEATURE, WildSproutTaiga.identifier( "trees"), TREES);
+        Registry.register(Registries.FEATURE, WildSproutTaiga.identifier( "mega_spruce_trees"), MEGA_SPRUCE_TREES);
+        Registry.register(Registries.FEATURE, WildSproutTaiga.identifier( "mega_pine_trees"), MEGA_PINE_TREES);
         Registry.register(Registries.FEATURE, WildSproutTaiga.identifier( "random_path"), RANDOM_PATH);
 
     }
