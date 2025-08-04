@@ -1,0 +1,9 @@
+{
+  "feature": "wildsprout-taiga:trees",
+  "placement": [
+    {
+      "type": "minecraft:heightmap",
+      "heightmap": "MOTION_BLOCKING"
+    }
+  ]
+}
