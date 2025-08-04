@@ -90,7 +90,7 @@ public class ModWorldGeneration {
                         }
                 );
 
-        BiomeModifications.create(WildSproutTaiga.identifier("less_old_trees"))
+        BiomeModifications.create(WildSproutTaiga.identifier("less_original_trees"))
                 .add(ModificationPhase.REPLACEMENTS,
                         BiomeSelectors.includeByKey(BiomeKeys.TAIGA, BiomeKeys.SNOWY_TAIGA),
                         context -> {
@@ -102,7 +102,7 @@ public class ModWorldGeneration {
                             // Add new custom pumpkin patch feature.
                             context.getGenerationSettings().addFeature(
                                     GenerationStep.Feature.VEGETAL_DECORATION,
-                                    ModPlacedFeatures.OLD_TAIGA_TREES_PLACED_KEY
+                                    ModPlacedFeatures.ORIGINAL_TAIGA_TREES_PLACED_KEY
                             );
                         }
                 );

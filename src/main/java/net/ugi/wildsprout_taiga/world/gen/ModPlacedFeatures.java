@@ -24,7 +24,7 @@ public class ModPlacedFeatures {
     public static final RegistryKey<PlacedFeature> FLUFFY_SNOW_PLACED_KEY = registerKey("fluffy_snow");
     public static final RegistryKey<PlacedFeature> TREES_PLACED_KEY = registerKey("trees");
     public static final RegistryKey<PlacedFeature> FALLEN_TREE_PLACED_KEY = registerKey("fallen_tree");
-    public static final RegistryKey<PlacedFeature> OLD_TAIGA_TREES_PLACED_KEY = registerKey("old_taiga_trees");
+    public static final RegistryKey<PlacedFeature> ORIGINAL_TAIGA_TREES_PLACED_KEY = registerKey("original_taiga_trees");
     public static final RegistryKey<PlacedFeature> RANDOM_PATH_PLACED_KEY = registerKey("random_path");
 
 
@@ -40,7 +40,7 @@ public class ModPlacedFeatures {
         register(context,FLUFFY_SNOW_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.FLUFFY_SNOW_KEY), CountPlacementModifier.of(32), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
         register(context,TREES_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.TREES_KEY), CountPlacementModifier.of(10), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
         register(context,FALLEN_TREE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.FALLEN_TREE_KEY), RarityFilterPlacementModifier.of(3), SquarePlacementModifier.of(), PlacedFeatures.WORLD_SURFACE_WG_HEIGHTMAP, BiomePlacementModifier.of());
-        register(context,OLD_TAIGA_TREES_PLACED_KEY, configuredFeatures.getOrThrow(VegetationConfiguredFeatures.TREES_TAIGA), CountPlacementModifier.of(5), SquarePlacementModifier.of(), SurfaceWaterDepthFilterPlacementModifier.of(0), PlacedFeatures.OCEAN_FLOOR_HEIGHTMAP, BiomePlacementModifier.of());
+        register(context, ORIGINAL_TAIGA_TREES_PLACED_KEY, configuredFeatures.getOrThrow(VegetationConfiguredFeatures.TREES_TAIGA), CountPlacementModifier.of(5), SquarePlacementModifier.of(), SurfaceWaterDepthFilterPlacementModifier.of(0), PlacedFeatures.OCEAN_FLOOR_HEIGHTMAP, BiomePlacementModifier.of());
         register(context,RANDOM_PATH_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.RANDOM_PATH_KEY), RarityFilterPlacementModifier.of(60), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
 
 
