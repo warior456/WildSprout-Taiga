@@ -41,7 +41,7 @@ public class ModConfiguredFeatures {
         RegistryEntry<PlacedFeature> originalSpruce = registryEntryLookup.getOrThrow(TreePlacedFeatures.SPRUCE_CHECKED);
         RegistryEntry<PlacedFeature> originalPine = registryEntryLookup.getOrThrow(TreePlacedFeatures.PINE_CHECKED);
 
-        RegistryEntry<PlacedFeature> newSpruce = registryEntryLookup.getOrThrow(ModPlacedFeatures.TREES_PLACED_KEY);
+        RegistryEntry<PlacedFeature> newSpruce = registryEntryLookup.getOrThrow(ModPlacedFeatures.TREES_RAW_PLACED_KEY);
         RegistryEntry<PlacedFeature> newMegaSpruce = registryEntryLookup.getOrThrow(ModPlacedFeatures.NEW_MEGA_SPRUCE_PLACED_KEY);
 
 
@@ -65,7 +65,7 @@ public class ModConfiguredFeatures {
                 context,
                 REPLACED_TREES_OLD_GROWTH_SPRUCE_TAIGA_KEY,
                 Feature.RANDOM_SELECTOR,
-                new RandomFeatureConfig(List.of(new RandomFeatureEntry(originalMegaSpruce, 0.33333334F), new RandomFeatureEntry(originalMegaPine, 0.33333334F)/*, new RandomFeatureEntry(newSpruce, 0.7f)*/), originalSpruce)
+                new RandomFeatureConfig(List.of(new RandomFeatureEntry(originalMegaSpruce, 0.33333334F), new RandomFeatureEntry(originalMegaPine, 0.33333334F), new RandomFeatureEntry(newSpruce, 0.86f)), originalSpruce)
         );
 
 
