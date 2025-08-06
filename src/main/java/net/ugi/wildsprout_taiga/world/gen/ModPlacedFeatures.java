@@ -57,10 +57,6 @@ public class ModPlacedFeatures {
 
 
         register(context,NEW_MEGA_SPRUCE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.NEW_MEGA_SPRUCE_KEY), PlacedFeatures.wouldSurvive(Blocks.SPRUCE_SAPLING));
-
-
-        register(context,DUNES, configuredFeatures.getOrThrow(ModConfiguredFeatures.DUNES), CountPlacementModifier.of(32), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
-
     }
 
     public static RegistryKey<PlacedFeature> registerKey(String name) {
