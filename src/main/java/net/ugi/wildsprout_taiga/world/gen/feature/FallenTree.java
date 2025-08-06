@@ -42,7 +42,7 @@ public class FallenTree extends Feature<DefaultFeatureConfig> {
 
         // populate heighmaps
         ChunkPos centerchunk = structureWorldAccess.getChunk(blockPos).getPos();
-        for (int i = -1; i < 2; i++){
+        for (int i = -1; i < 2; i++){//todo: replace heightmap with manual check for performance
             for(int k = -1; k < 2; k++){
                 //structureWorldAccess.getChunk(centerchunk.x + i, centerchunk.z + k, ChunkStatus.FEATURES, true).getHeightmap(Heightmap.Type.WORLD_SURFACE);
                 Heightmap.populateHeightmaps(structureWorldAccess.getChunk(centerchunk.x + i, centerchunk.z + k), EnumSet.of(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES));
