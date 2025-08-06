@@ -34,6 +34,9 @@ public class ModPlacedFeatures {
     public static final RegistryKey<PlacedFeature> NEW_MEGA_SPRUCE_PLACED_KEY = registerKey("new_mega_spruce");
 
 
+    public static final RegistryKey<PlacedFeature> DUNES = registerKey("dunes");
+
+
 
     public static void bootstrap(Registerable<PlacedFeature> context) {
         var configuredFeatures = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
@@ -54,6 +57,10 @@ public class ModPlacedFeatures {
 
 
         register(context,NEW_MEGA_SPRUCE_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.NEW_MEGA_SPRUCE_KEY), PlacedFeatures.wouldSurvive(Blocks.SPRUCE_SAPLING));
+
+
+        register(context,DUNES, configuredFeatures.getOrThrow(ModConfiguredFeatures.DUNES), CountPlacementModifier.of(32), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
+
     }
 
     public static RegistryKey<PlacedFeature> registerKey(String name) {

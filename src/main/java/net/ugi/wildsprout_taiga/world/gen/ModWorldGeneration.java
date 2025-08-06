@@ -151,5 +151,12 @@ public class ModWorldGeneration {
                     context.getGenerationSettings().removeFeature(
                             GenerationStep.Feature.VEGETAL_DECORATION, VegetationPlacedFeatures.PATCH_PUMPKIN);});
 
+        BiomeModifications.create(WildSproutTaiga.identifier("no_mushroom_snowy")).add( ModificationPhase.REMOVALS,BiomeSelectors.includeByKey(BiomeKeys.SNOWY_TAIGA),
+                context -> {
+                    context.getGenerationSettings().removeFeature(
+                            GenerationStep.Feature.VEGETAL_DECORATION, VegetationPlacedFeatures.BROWN_MUSHROOM_TAIGA);
+                    context.getGenerationSettings().removeFeature(
+                            GenerationStep.Feature.VEGETAL_DECORATION, VegetationPlacedFeatures.RED_MUSHROOM_TAIGA);
+        });
     }
 }
