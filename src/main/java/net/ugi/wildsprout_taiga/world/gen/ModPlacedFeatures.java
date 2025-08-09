@@ -20,6 +20,7 @@ public class ModPlacedFeatures {
     //-------------------------
     public static final RegistryKey<PlacedFeature> BOULDERS_PLACED_KEY = registerKey("boulders");
     public static final RegistryKey<PlacedFeature> MOSSY_ROCKS_PLACED_KEY = registerKey("mossy_rocks");
+    public static final RegistryKey<PlacedFeature> OLD_GROWTH_MOSSY_ROCKS_PLACED_KEY = registerKey("old_growth_mossy_rocks");
     public static final RegistryKey<PlacedFeature> SNOWY_ROCKS_PLACED_KEY = registerKey("snowy_rocks");
     public static final RegistryKey<PlacedFeature> MOSS_PLACED_KEY = registerKey("moss");
     public static final RegistryKey<PlacedFeature> MOSS_PATCH_PLACED_KEY = registerKey("moss_patch");
@@ -39,6 +40,7 @@ public class ModPlacedFeatures {
         //-------------------------
         register(context,BOULDERS_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.BOULDERS_KEY), RarityFilterPlacementModifier.of(64), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
         register(context,MOSSY_ROCKS_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.MOSSY_ROCKS_KEY), RarityFilterPlacementModifier.of(1), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
+        register(context,OLD_GROWTH_MOSSY_ROCKS_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.OLD_GROWTH_MOSSY_ROCKS_KEY), CountPlacementModifier.of(2), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
         register(context,SNOWY_ROCKS_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.SNOWY_ROCKS_KEY), RarityFilterPlacementModifier.of(1), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
         register(context,MOSS_PATCH_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.MOSS_PATCH_KEY), CountPlacementModifier.of(32), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());
         register(context,MOSS_PLACED_KEY, configuredFeatures.getOrThrow(ModConfiguredFeatures.MOSS_KEY), CountPlacementModifier.of(32), SquarePlacementModifier.of(), PlacedFeatures.MOTION_BLOCKING_HEIGHTMAP, BiomePlacementModifier.of());

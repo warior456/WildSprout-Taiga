@@ -3,8 +3,10 @@ A mod that improves the vanilla taiga biomes
 
 **!! Neoforge requires Sinytra Connector !!**
 ## FEATURES
-
-
+- new trees replace about 70% of vanilla taiga trees
+- fallen trees
+- mossy and snowy rocks
+- small wildlife paths
 - snow generates in layers and on top of ice now
 
 ## INCLUDED BIOMES

@@ -22,6 +22,7 @@ https://minecraft.wiki/w/Heightmap
 public class ModFeatures {
     public static final Feature<DefaultFeatureConfig> BOULDERS = new Boulders(DefaultFeatureConfig.CODEC);
     public static final Feature<DefaultFeatureConfig> MOSSY_ROCKS = new MossyRocks(DefaultFeatureConfig.CODEC);
+    public static final Feature<DefaultFeatureConfig> OLD_GROWTH_MOSSY_ROCKS = new OldGrowthMossyRocks(DefaultFeatureConfig.CODEC);
     public static final Feature<DefaultFeatureConfig> SNOWY_ROCKS = new SnowyRocks(DefaultFeatureConfig.CODEC);
     public static final Feature<DefaultFeatureConfig> FLUFFY_SNOW = new FluffySnow(DefaultFeatureConfig.CODEC);
     public static final Feature<DefaultFeatureConfig> MOSS = new Moss(DefaultFeatureConfig.CODEC);
@@ -35,6 +36,7 @@ public class ModFeatures {
     public static void init(){
         Registry.register(Registries.FEATURE, WildSproutTaiga.identifier( "boulders"), BOULDERS);
         Registry.register(Registries.FEATURE, WildSproutTaiga.identifier( "mossy_rocks"), MOSSY_ROCKS);
+        Registry.register(Registries.FEATURE, WildSproutTaiga.identifier( "old_growth_mossy_rocks"), OLD_GROWTH_MOSSY_ROCKS);
         Registry.register(Registries.FEATURE, WildSproutTaiga.identifier( "snowy_rocks"), SNOWY_ROCKS);
         Registry.register(Registries.FEATURE, WildSproutTaiga.identifier( "fluffy_snow"), FLUFFY_SNOW);
         Registry.register(Registries.FEATURE, WildSproutTaiga.identifier( "moss"), MOSS);
