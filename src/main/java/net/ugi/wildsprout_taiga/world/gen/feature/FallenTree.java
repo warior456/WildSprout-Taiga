@@ -78,7 +78,11 @@ public class FallenTree extends Feature<DefaultFeatureConfig> {
 
         placeList.remove(1);
 
+        if(structureWorldAccess.getBlockState(placeList.get(1)).isIn(ModTags.Blocks.VALID_TAIGA_GENERATE_BLOCK)) return false; //prevent floating logs
+
         for (BlockPos pos : placeList){
+
+
             /*if (structureWorldAccess.getBlockState(pos).isIn(ModTags.Blocks.CAN_BE_REPLACED_ALL) ) {continue}*/
             structureWorldAccess.setBlockState(pos, Blocks.SPRUCE_LOG.getDefaultState().with(PillarBlock.AXIS, axis), 0);
             //top decoration
