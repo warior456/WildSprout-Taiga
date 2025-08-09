@@ -16,6 +16,7 @@ import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
 import net.ugi.wildsprout_taiga.tags.ModTags;
+import net.ugi.wildsprout_taiga.world.gen.feature.spruce_trees.Pine1;
 import net.ugi.wildsprout_taiga.world.gen.feature.spruce_trees.Spruce1;
 import net.ugi.wildsprout_taiga.world.gen.feature.spruce_trees.Spruce2;
 import net.ugi.wildsprout_taiga.world.gen.feature.spruce_trees.Spruce3;
@@ -56,16 +57,17 @@ public class Trees extends Feature<DefaultFeatureConfig> {
 //        if(random.nextDouble()>0.3)
 //            return false;
 
-        //return Spruce3.generate(context,center);
+//        return Pine1.generate(context,center);
 
         double r = random.nextDouble();
-        if (r < 0.33) {
+        if (r < 0.25) {
             return Spruce1.generate(context, center);
-        } else if (r < 0.66) {
+        } else if (r < 0.50) {
             return Spruce2.generate(context,center);
-        }
-        else {
+        } else if (r < 0.75){
             return Spruce3.generate(context,center);
+        } else {
+            return Pine1.generate(context, center);
         }
     }
 }

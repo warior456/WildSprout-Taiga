@@ -37,5 +37,4 @@ public class WildSproutTaiga implements ModInitializer {
 
 // todo: rework random path to not go trough rock / trees ( and in plains too)
 // todo: maybe 3 chunk river?
-// todo: pine
 // todo: other big trees
