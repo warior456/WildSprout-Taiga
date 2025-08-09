@@ -34,7 +34,6 @@ public class ModPlacedFeatures {
     public static final RegistryKey<PlacedFeature> NEW_MEGA_SPRUCE_PLACED_KEY = registerKey("new_mega_spruce");
 
 
-
     public static void bootstrap(Registerable<PlacedFeature> context) {
         var configuredFeatures = context.getRegistryLookup(RegistryKeys.CONFIGURED_FEATURE);
         //-------------------------

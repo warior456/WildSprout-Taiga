@@ -95,6 +95,7 @@ public class RandomPath extends Feature<DefaultFeatureConfig> {
         for(int i = 0 ; i < path.length; i++) {
             int r = random.nextInt(100);
             BlockPos pos = path[i];
+            cleanPath(structureWorldAccess,pos);
             if (r == 0)
                 this.setBlockState(structureWorldAccess,pos, Blocks.TUFF.getDefaultState());
             if (r >= 1 && r < 20)
@@ -107,5 +108,16 @@ public class RandomPath extends Feature<DefaultFeatureConfig> {
         }
 
         return true;
+    }
+
+    private void cleanPath(StructureWorldAccess structureWorldAccess, BlockPos pos) {
+        if (structureWorldAccess.getBlockState(pos).equals(Blocks.MOSS_CARPET.getDefaultState()))
+            this.setBlockState(structureWorldAccess, pos.up(), Blocks.AIR.getDefaultState());
+
+        if(structureWorldAccess.getBlockState(pos).equals(Blocks.LARGE_FERN.getDefaultState())){
+            this.setBlockState(structureWorldAccess, pos.up(), Blocks.AIR.getDefaultState());
+            this.setBlockState(structureWorldAccess, pos.up(2), Blocks.AIR.getDefaultState());
+        }
+
     }
 }

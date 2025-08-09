@@ -49,24 +49,24 @@ public class Moss extends Feature<DefaultFeatureConfig> {
 
                     if (!(structureWorldAccess.getBlockState(pos.up()).isIn(ModTags.Blocks.CAN_BE_REPLACED_NON_SOLID))) continue;
 
-                    int r = random.nextInt(100);
+                    int r = random.nextInt(200);
                     // removes buggy floating ferns
-                    if (r < 41 && structureWorldAccess.getBlockState(pos.up(2)).getBlock().equals(Blocks.LARGE_FERN)){
+                    if (r < 81 && structureWorldAccess.getBlockState(pos.up(2)).getBlock().equals(Blocks.LARGE_FERN)){
                         this.setBlockState(structureWorldAccess, pos.up(2), Blocks.AIR.getDefaultState());
                     }
 
-                    if (r < 25) {
+                    if (r < 50) {
                         this.setBlockState(structureWorldAccess, pos.up(), Blocks.MOSS_CARPET.getDefaultState());
-                    } else if (r < 35) {
+                    } else if (r < 70) {
                         this.setBlockState(structureWorldAccess, pos.up(), Blocks.FERN.getDefaultState());
-                    } else if (r < 36) {
+                    } else if (r < 72) {
                         this.setBlockState(structureWorldAccess, pos.up(), Blocks.LARGE_FERN.getDefaultState().with(TallPlantBlock.HALF, DoubleBlockHalf.LOWER));
                         this.setBlockState(structureWorldAccess, pos.up(2), Blocks.LARGE_FERN.getDefaultState().with(TallPlantBlock.HALF, DoubleBlockHalf.UPPER));
                     }
-                    else if (r < 40) {
+                    else if (r < 80) {
                         this.setBlockState(structureWorldAccess, pos.up(), Blocks.SHORT_GRASS.getDefaultState());
                     }
-                    else if (r < 41) {
+                    else if (r < 81) {
                         this.setBlockState(structureWorldAccess, pos.up(), Blocks.SWEET_BERRY_BUSH.getDefaultState().with(SweetBerryBushBlock.AGE,3));
                     }
 
