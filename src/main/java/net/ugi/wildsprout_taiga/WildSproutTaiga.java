@@ -40,4 +40,3 @@ public class WildSproutTaiga implements ModInitializer {
 // todo: more types of tree
 // todo: pine
 // todo: other big trees
-//todo: replace heightmap with manual check for performance in fallen tree feature

@@ -4,21 +4,19 @@ import com.mojang.serialization.Codec;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.PillarBlock;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.ChunkPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.util.math.noise.DoublePerlinNoiseSampler;
 import net.minecraft.util.math.random.CheckedRandom;
 import net.minecraft.util.math.random.ChunkRandom;
 import net.minecraft.util.math.random.Random;
-import net.minecraft.world.Heightmap;
 import net.minecraft.world.StructureWorldAccess;
-import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.BiomeKeys;
 import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
 import net.ugi.wildsprout_taiga.tags.ModTags;
+import net.ugi.wildsprout_taiga.util.ChunkHelper;
 
 import java.util.*;
 
@@ -40,26 +38,14 @@ public class FallenTree extends Feature<DefaultFeatureConfig> {
         Random random = context.getRandom();
         int featureSize = 7;
 
-        // populate heighmaps
-        ChunkPos centerchunk = structureWorldAccess.getChunk(blockPos).getPos();
-        for (int i = -1; i < 2; i++){//todo: replace heightmap with manual check for performance
-            for(int k = -1; k < 2; k++){
-                //structureWorldAccess.getChunk(centerchunk.x + i, centerchunk.z + k, ChunkStatus.FEATURES, true).getHeightmap(Heightmap.Type.WORLD_SURFACE);
-                Heightmap.populateHeightmaps(structureWorldAccess.getChunk(centerchunk.x + i, centerchunk.z + k), EnumSet.of(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES));
-
-            }
-        }
-
         ChunkRandom chunkRandom = new ChunkRandom(new CheckedRandom(structureWorldAccess.getSeed()));
 
 
-
-
         BlockPos startPos = blockPos.add(random.nextBetween(-featureSize, featureSize), 0, random.nextBetween(-featureSize, featureSize));
-        startPos =  new BlockPos(startPos.getX(), structureWorldAccess.getTopY(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, startPos.getX(), startPos.getZ()), startPos.getZ());
+        startPos =  new BlockPos(startPos.getX(), ChunkHelper.getTopMotionBlockingNoLeavesYAt(structureWorldAccess, startPos), startPos.getZ());
 
         BlockPos endPos = blockPos.add(random.nextBetween(-featureSize, featureSize), 0, random.nextBetween(-featureSize, featureSize));
-        endPos =  new BlockPos(endPos.getX(), structureWorldAccess.getTopY(Heightmap.Type.MOTION_BLOCKING_NO_LEAVES, endPos.getX(), endPos.getZ()), endPos.getZ());
+        endPos =  new BlockPos(endPos.getX(), ChunkHelper.getTopMotionBlockingNoLeavesYAt(structureWorldAccess, endPos), endPos.getZ());
 
 
 
@@ -68,7 +54,7 @@ public class FallenTree extends Feature<DefaultFeatureConfig> {
                 endPos.getY() - startPos.getY(),
                 endPos.getZ() - startPos.getZ()
         );
-        if(Math.abs(direction.getY()) > 4 || direction.length()<4|| Math.abs(Math.abs(direction.getX()) - Math.abs(direction.getZ())) < 2){
+        if(Math.abs(direction.getY()) > 5 || direction.length()<4|| Math.abs(Math.abs(direction.getX()) - Math.abs(direction.getZ())) < 2){
             return false;
         }
         if(!structureWorldAccess.getBlockState(startPos.down()).isIn(ModTags.Blocks.VALID_TAIGA_GENERATE_BLOCK) || !structureWorldAccess.getBlockState(endPos.down()).isIn(ModTags.Blocks.VALID_TAIGA_GENERATE_BLOCK)){
