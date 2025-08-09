@@ -43,7 +43,7 @@ public class ModWorldGeneration {
         //LOCAL MODIFICATIONS
 
         //BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.TAIGA), GenerationStep.Feature.LOCAL_MODIFICATIONS, ModPlacedFeatures.BOULDERS_PLACED_KEY);
-        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.TAIGA), GenerationStep.Feature.LOCAL_MODIFICATIONS, ModPlacedFeatures.MOSSY_ROCKS_PLACED_KEY);
+        BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.TAIGA, BiomeKeys.OLD_GROWTH_SPRUCE_TAIGA, BiomeKeys.OLD_GROWTH_PINE_TAIGA), GenerationStep.Feature.LOCAL_MODIFICATIONS, ModPlacedFeatures.MOSSY_ROCKS_PLACED_KEY);
         BiomeModifications.addFeature(BiomeSelectors.includeByKey(BiomeKeys.SNOWY_TAIGA), GenerationStep.Feature.LOCAL_MODIFICATIONS, ModPlacedFeatures.SNOWY_ROCKS_PLACED_KEY);
 
 
@@ -117,6 +117,20 @@ public class ModWorldGeneration {
                             context.getGenerationSettings().addFeature(
                                     GenerationStep.Feature.VEGETAL_DECORATION,
                                     ModPlacedFeatures.REPLACED_OLD_GROWTH_SPRUCE_TREES_PLACED_KEY
+                            );
+                        });
+
+        BiomeModifications.create(WildSproutTaiga.identifier("replace_old_growth_rocks"))
+                .add(ModificationPhase.REPLACEMENTS,
+                        BiomeSelectors.includeByKey(BiomeKeys.OLD_GROWTH_SPRUCE_TAIGA, BiomeKeys.OLD_GROWTH_PINE_TAIGA),
+                        context -> {
+                            context.getGenerationSettings().removeFeature(
+                                    GenerationStep.Feature.LOCAL_MODIFICATIONS,
+                                    MiscPlacedFeatures.FOREST_ROCK
+                            );
+                            context.getGenerationSettings().addFeature(
+                                    GenerationStep.Feature.LOCAL_MODIFICATIONS,
+                                    ModPlacedFeatures.OLD_GROWTH_MOSSY_ROCKS_PLACED_KEY
                             );
                         });
 

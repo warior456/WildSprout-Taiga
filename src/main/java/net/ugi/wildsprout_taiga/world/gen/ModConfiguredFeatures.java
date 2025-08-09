@@ -21,6 +21,7 @@ public class ModConfiguredFeatures {
     //-------------------------
     public static final RegistryKey<ConfiguredFeature<?,?>> BOULDERS_KEY = registerKey("boulders");
     public static final RegistryKey<ConfiguredFeature<?,?>> MOSSY_ROCKS_KEY = registerKey("mossy_rocks");
+    public static final RegistryKey<ConfiguredFeature<?,?>> OLD_GROWTH_MOSSY_ROCKS_KEY = registerKey("old_growth_mossy_rocks");
     public static final RegistryKey<ConfiguredFeature<?,?>> SNOWY_ROCKS_KEY = registerKey("snowy_rocks");
     public static final RegistryKey<ConfiguredFeature<?,?>> MOSS_KEY = registerKey("moss");
     public static final RegistryKey<ConfiguredFeature<?,?>> MOSS_PATCH_KEY = registerKey("moss_patch");
@@ -48,6 +49,7 @@ public class ModConfiguredFeatures {
         //-------------------------
         register(context,BOULDERS_KEY, ModFeatures.BOULDERS, new DefaultFeatureConfig());
         register(context,MOSSY_ROCKS_KEY, ModFeatures.MOSSY_ROCKS, new DefaultFeatureConfig());
+        register(context,OLD_GROWTH_MOSSY_ROCKS_KEY, ModFeatures.OLD_GROWTH_MOSSY_ROCKS, new DefaultFeatureConfig());
         register(context,SNOWY_ROCKS_KEY, ModFeatures.SNOWY_ROCKS, new DefaultFeatureConfig());
         register(context, FLUFFY_SNOW_KEY, ModFeatures.FLUFFY_SNOW, new DefaultFeatureConfig());
         register(context,MOSS_KEY, ModFeatures.MOSS, new DefaultFeatureConfig());
