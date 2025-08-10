@@ -16,10 +16,7 @@ import net.minecraft.world.gen.feature.DefaultFeatureConfig;
 import net.minecraft.world.gen.feature.Feature;
 import net.minecraft.world.gen.feature.util.FeatureContext;
 import net.ugi.wildsprout_taiga.tags.ModTags;
-import net.ugi.wildsprout_taiga.world.gen.feature.spruce_trees.Pine1;
-import net.ugi.wildsprout_taiga.world.gen.feature.spruce_trees.Spruce1;
-import net.ugi.wildsprout_taiga.world.gen.feature.spruce_trees.Spruce2;
-import net.ugi.wildsprout_taiga.world.gen.feature.spruce_trees.Spruce3;
+import net.ugi.wildsprout_taiga.world.gen.feature.spruce_trees.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,21 +51,21 @@ public class Trees extends Feature<DefaultFeatureConfig> {
 
         if(!structureWorldAccess.getBlockState(center.down()).isIn(ModTags.Blocks.VALID_TAIGA_GENERATE_BLOCK)) return false;
 
-//        if(random.nextDouble()>0.3)
-//            return false;
+        if(random.nextDouble()>0.1)
+            return false;
 
-//        return Pine1.generate(context,center);
+        return BigSpruce3.generate(context,center);
 
-        double r = random.nextDouble();
-        if (r < 0.25) {
-            return Spruce1.generate(context, center);
-        } else if (r < 0.50) {
-            return Spruce2.generate(context,center);
-        } else if (r < 0.75){
-            return Spruce3.generate(context,center);
-        } else {
-            return Pine1.generate(context, center);
-        }
+//        double r = random.nextDouble();
+//        if (r < 0.25) {
+//            return Spruce1.generate(context, center);
+//        } else if (r < 0.50) {
+//            return Spruce2.generate(context,center);
+//        } else if (r < 0.75){
+//            return Spruce3.generate(context,center);
+//        } else {
+//            return Pine1.generate(context, center);
+//        }
     }
 }
 
